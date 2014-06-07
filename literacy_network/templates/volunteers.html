@@ -5,8 +5,6 @@
 <fieldset>
     <legend>Volunteers</legend>
 
-    <a href="{% url 'new-volunteer' %}" class="round-button" style="margin: 5px 10px;">Add Volunteer</a>
-
     <table class="data-table">
         <thead>
             <tr>
@@ -25,12 +23,12 @@
                     <td>{{ volunteer.phone }}</td>
                     <td>{{ volunteer.email }}</td>
                     <td>
-<a href="{% url 'edit-volunteer' volunteer_id=volunteer.id%}">Edit</a> |
                     </td>
 
                 </tr>
             {% endfor %}
         </tbody>
+
     </table>
 </fieldset>
 
