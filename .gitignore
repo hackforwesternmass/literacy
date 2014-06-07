@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.mo
 *.egg-info
 *.egg
@@ -20,3 +21,6 @@ dist
 *.pyo
 *.tmp*
 
+=======
+build
+>>>>>>> 9eaa48e07c339d74b8a02b944b4d2a3e453cca27
