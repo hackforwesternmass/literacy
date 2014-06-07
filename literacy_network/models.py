@@ -22,7 +22,9 @@ class Volunteer(models.Model):
     city = models.CharField(max_length=50, null=True, blank=True)
     zipcode = models.CharField(max_length=10, null=True, blank=True)
 
-    notes = models.TextField(null=True, blank=True)
+    occupation_notes = models.TextField(null=True, blank=True)
+    volunteer_notes = models.TextField(null=True, blank=True)
+
     is_public = models.BooleanField(default=False)
     linkedin_link = models.CharField(max_length=100, null=True, blank=True)
 
