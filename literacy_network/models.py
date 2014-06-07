@@ -42,10 +42,12 @@ class VolunteerSite(models.Model):
 class HelpType(models.Model):
     """ A type of participation that a volunteer is willing to """
     description = models.CharField(max_length=150)
+    has_details = models.BooleanField()
 
 class HelpTypeResponse(models.Model):
     volunteer = models.ForeignKey(Volunteer)
     affirmative = models.BooleanField()
     help_type = models.ForeignKey(HelpType)
+    details = models.TextField()
 
 
