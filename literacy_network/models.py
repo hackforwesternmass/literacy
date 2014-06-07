@@ -11,9 +11,17 @@ class Site(models.Model):
 
 class Volunteer(models.Model):
     """ Represents a volunteer which has skills and time to donate """
-    name = models.CharField(max_length=200)
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
     phone = models.CharField(max_length=12)
     email = models.CharField(max_length=30, null=True, blank=True)
+
+    address_line1 = models.CharField(max_length=100, null=True, blank=True)
+    address_line2 = models.CharField(max_length=100, null=True, blank=True)
+    state = models.CharField(max_length=2, null=True, blank=True)
+    city = models.CharField(max_length=50, null=True, blank=True)
+    zipcode = models.CharField(max_length=10, null=True, blank=True)
+
     notes = models.TextField(null=True, blank=True)
     is_public = models.BooleanField(default=False)
     linkedin_link = models.CharField(max_length=100, null=True, blank=True)
