@@ -11,7 +11,6 @@ urlpatterns = patterns('',
     url(r'^volunteers/$', 'literacy_network.views.volunteers', name='volunteers'),
     url(r'^volunteers/new$', 'literacy_network.views.edit_volunteer', name='new-volunteer'),
     url(r'^volunteers/(?P<volunteer_id>\d{1,10})$', 'literacy_network.views.edit_volunteer', name='home'),
-<<<<<<< HEAD
 	url(r'^upload-industries$', 'literacy_network.views.upload_industries', name='industries'),
 
     # url(r'^literacy_network/', include('literacy_network.foo.urls')),
