@@ -62,7 +62,6 @@ def volunteers(request):
     return render(request, 'volunteers.html',
             {"volunteers" : volunteers})
 
-<<<<<<< HEAD
     return render(request, 'edit-volunteer.html',
 
         {"form" : form})
@@ -75,5 +74,3 @@ def upload_industries(request):
 		industry.save()
 		
 	return redirect("/")
-=======
->>>>>>> 7b8cfbf8cef814cec7287dedb2f1a817c2c04022
