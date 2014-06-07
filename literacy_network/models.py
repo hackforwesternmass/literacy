@@ -5,10 +5,17 @@ from django.db import models
 class Volunteer(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    phone = models.
+    phone = models.CharField(max_length=12)
+    email = models.CharField(max_length=30, null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
+    is_public = models.BooleanField(default=False)
+    linkedin_link = models.CharField(max_length=100)
 
-class CareerHistory(models.Model):
-    pass 
+class Occupation(models.Model):
+    job_title = models.CharField(max_length=50)
+    job_sector = models.ForeignKey(JobSector, verbose_name="Job Sector")
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
 
 class JobSector(models.Model):
     pass
