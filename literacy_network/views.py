@@ -62,18 +62,17 @@ def volunteers(request):
     return render(request, 'volunteers.html',
             {"volunteers" : volunteers})
 
-<<<<<<< HEAD
-    return render(request, 'edit-volunteer.html',
-
-        {"form" : form})
 def upload_industries(request):
-	'''Handles upload of industry data in CSV format'''
-	for row in csv.DictReader(request.FILES["industries-csv"]):
-		industry = Industry()
-		industry.code=row["Industry_Code"]
-		industry.name=row["Industry_Name"]
-		industry.save()
+    '''Handles upload of industry data in CSV format'''
+    if request.method == "POST":
+        for row in csv.DictReader(request.FILES["industries-csv"]):
+            industry = Industry()
+            industry.code=row["Industry_Code"]
+            industry.name=row["Industry_Name"]
+            industry.save()
+	    return redirect("/")
+    else:
+        return render(request, "upload-industries.html")
+
+
 		
-	return redirect("/")
-=======
->>>>>>> 7b8cfbf8cef814cec7287dedb2f1a817c2c04022
