@@ -50,6 +50,9 @@ class VolunteerSite(models.Model):
     volunteer = models.ForeignKey(Volunteer)
     site = models.ForeignKey(Site)
 
+    # indicates if the volunteer is willing to go to the site
+    affirmative = models.BooleanField()
+
 class HelpType(models.Model):
     """ A type of participation that a volunteer is willing to """
     description = models.CharField(max_length=150)
