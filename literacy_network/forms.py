@@ -10,6 +10,9 @@ HelpResponseForm = inlineformset_factory(
     Volunteer, HelpTypeResponse, extra=0, can_delete=False)
 OccupationForm = inlineformset_factory(
     Volunteer, Occupation, extra=0, can_delete=False)
+SiteForm = inlineformset_factory(
+    Volunteer, VolunteerSite, extra=0, can_delete=False)
+    
 
 
 
