@@ -3,6 +3,7 @@ from django.db import models
 
 class Industry(models.Model):
     name = models.CharField(max_length=100)
+    code = models.CharField(max_length=10)
 
 class Site(models.Model):
     """ Represents a location/office where a volunteer can participate """
