@@ -9,9 +9,13 @@
     {% csrf_token %}
     <div class="right">
 
-        <label for="id_name">Name</label>
-        {{ form.name.errors }}
-        {{ form.name }}
+        <label for="id_first_name">First Name</label>
+        {{ form.first_name.errors }}
+        {{ form.first_name }}
+
+        <label for="id_last_name">Last Name</label>
+        {{ form.last_name.errors }}
+        {{ form.last_name }}
 
         <label for="id_phone">Contact Phone</label>
         {{ form.phone.errors }}
