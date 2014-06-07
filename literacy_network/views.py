@@ -32,5 +32,11 @@ def edit_volunteer(request, volunteer_id=None):
     elif volunteer_id:
         form = VolunteerForm(instance=volunteer)
 
-    return render(request, 'edit-volunteer.html',
-        {"form" : form})
+    return render(request, 'edit-volunteer.html', {"form" : form})
+
+def volunteers(request):
+    """ Presents a list of volunteers """
+    volunteers = Volunteer.objects.all()
+    return render(request, 'volunteers.html',
+            {"volunteers" : volunteers})
+
