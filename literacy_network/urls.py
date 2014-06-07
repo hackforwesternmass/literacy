@@ -11,8 +11,8 @@ urlpatterns = patterns('',
     url(r'^volunteers/new$', 'literacy_network.views.edit_volunteer', name='home'),
     url(r'^volunteers/(?P<volunteer_id>\d{1,10})$', 'literacy_network.views.edit_volunteer', name='home'),
 
-    url(r'^login$', 'django.contrib.auth.views.login', name="auth_login"),
-    url(r'^logout$', 'django.contrib.auth.views.login', name="auth_loguot"),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', name="auth_login"),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {"next_page" : "/"}, name="auth_logout"),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
