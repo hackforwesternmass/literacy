@@ -4,6 +4,10 @@ from django.db import models
 class JobSector(models.Model):
     pass
 
+class Site(models.Model):
+    """ Represents a location/office where a volunteer can participate """
+    name = models.CharField(max_length=100)
+
 class Volunteer(models.Model):
     """ Represents a volunteer which has skills and time to donate """
     name = models.CharField(max_length=200)
@@ -25,10 +29,6 @@ class VolunteerSite(models.Model):
     """ Mapping between volunteers and the sites they work at """
     volunteer = models.ForeignKey(Volunteer)
     site = models.ForeignKey(Site)
-
-class Site(models.Model):
-    """ Represents a location/office where a volunteer can participate """
-    name = models.CharField(max_length=100)
 
 class HelpType(models.Model):
     """ A type of participation that a volunteer is willing to """
