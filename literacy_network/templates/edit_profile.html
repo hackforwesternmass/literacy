@@ -1,0 +1,23 @@
+{% load tabindex from tag_extras %}
+{% load currency from tag_extras %}
+{% load bool_yn from tag_extras %}
+{% include "topmatter.html" %}
+
+<form method="post" action="">
+    {{ vol_form.non_field_errors }}
+    {% csrf_token %}
+    <div class="right">
+        <h3>Occupation Info</h3>
+        {{ occ_formset.as_p }}
+        <h3>Help Info</h3>
+        {{ help_formset.as_p }}
+        <input type="submit"/>
+    </div>
+
+    <div style="display: block;">
+        <input style="display: block; margin-top: 5px;" class="round-button" type="submit" value="Submit" tabindex="10"/>
+    </div>
+
+</form>
+
+{% include "footer.html" %}

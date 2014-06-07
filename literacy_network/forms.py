@@ -10,13 +10,12 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
 
-HelpResponseForm = inlineformset_factory(
-    Volunteer, HelpTypeResponse, extra=0, can_delete=False)
-OccupationForm = inlineformset_factory(
-    Volunteer, Occupation, extra=0, can_delete=False)
+HelpResponseFormset = inlineformset_factory(
+    Volunteer, HelpTypeResponse, extra=3, can_delete=False)
+OccupationFormset = inlineformset_factory(
+    Volunteer, Occupation, extra=3, can_delete=False)
 SiteForm = inlineformset_factory(
     Volunteer, VolunteerSite, extra=0, can_delete=False)
-    
 
 
 
