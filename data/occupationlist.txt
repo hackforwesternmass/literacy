@@ -1,0 +1,78 @@
+111000	Top Executives	1	T	3	
+112000	Advertising, Marketing, Promotions, Public Relations, and Sales Managers	1	T	7	
+113000	Operations Specialties Managers	1	T	13	
+119000	Other Management Occupations	1	T	23	
+131000	Business Operations Specialists	1	T	44	
+132000	Financial Specialists	1	T	67	
+151100	Computer Occupations	2	T	85	
+152000	Mathematical Science Occupations	1	T	103	
+171000	Architects, Surveyors, and Cartographers	1	T	112	
+172000	Engineers	1	T	119	
+173000	Drafters, Engineering Technicians, and Mapping Technicians	1	T	140	
+191000	Life Scientists	1	T	157	
+192000	Physical Scientists	1	T	174	
+193000	Social Scientists and Related Workers	1	T	187	
+194000	Life, Physical, and Social Science Technicians	1	T	202	
+211000	Counselors, Social Workers, and Other Community and Social Service Specialists	1	T	215	
+212000	Religious Workers	1	T	234	
+231000	Lawyers, Judges, and Related Workers	1	T	239	
+232000	Legal Support Workers	1	T	247	
+251000	Postsecondary Teachers	1	T	254	
+252000	Preschool, Primary, Secondary, and Special Education School Teachers	1	T	303	
+253000	Other Teachers and Instructors	1	T	320	
+254000	Librarians, Curators, and Archivists	1	T	326	
+259000	Other Education, Training, and Library Occupations	1	T	333	
+271000	Art and Design Workers	1	T	340	
+272000	Entertainers and Performers, Sports and Related Workers	1	T	356	
+273000	Media and Communication Workers	1	T	371	
+274000	Media and Communication Equipment Workers	1	T	386	
+291000	Health Diagnosing and Treating Practitioners	1	T	398	
+292000	Health Technologists and Technicians	1	T	436	
+299000	Other Healthcare Practitioners and Technical Occupations	1	T	463	
+312000	Occupational Therapy and Physical Therapist Assistants and Aides	1	T	477	
+319000	Other Healthcare Support Occupations	1	T	484	
+331000	Supervisors of Protective Service Workers	1	T	496	
+332000	Fire Fighting and Prevention Workers	1	T	502	
+333000	Law Enforcement Workers	1	T	507	
+339000	Other Protective Service Workers	1	T	517	
+352000	Cooks and Food Preparation Workers	1	T	532	
+353000	Food and Beverage Serving Workers	1	T	541	
+359000	Other Food Preparation and Serving Related Workers	1	T	548	
+372000	Building Cleaning and Pest Control Workers	1	T	557	
+391000	Supervisors of Personal Care and Service Workers	1	T	569	
+392000	Animal Care and Service Workers	1	T	574	
+393000	Entertainment Attendants and Related Workers	1	T	577	
+394000	Funeral Service Workers	1	T	589	
+395000	Personal Appearance Workers	1	T	593	
+399000	Other Personal Care and Service Workers	1	T	608	
+412000	Retail Sales Workers	1	T	620	
+413000	Sales Representatives, Services	1	T	628	
+419000	Other Sales and Related Workers	1	T	637	
+432000	Communications Equipment Operators	1	T	651	
+433000	Financial Clerks	1	T	655	
+434000	Information and Record Clerks	1	T	664	
+435000	Material Recording, Scheduling, Dispatching, and Distributing Workers	1	T	682	
+439000	Other Office and Administrative Support Workers	1	T	702	
+452000	Agricultural Workers	1	T	717	
+453000	Fishing and Hunting Workers	1	T	726	
+454000	Forest, Conservation, and Logging Workers	1	T	728	
+472000	Construction Trades Workers	1	T	737	
+474000	Other Construction and Related Workers	1	T	784	
+475000	Extraction Workers	1	T	795	
+492000	Electrical and Electronic Equipment Mechanics, Installers, and Repairers	1	T	813	
+493000	Vehicle and Mobile Equipment Mechanics, Installers, and Repairers	1	T	827	
+499000	Other Installation, Maintenance, and Repair Occupations	1	T	846	
+512000	Assemblers and Fabricators	1	T	880	
+513000	Food Processing Workers	1	T	893	
+514000	Metal Workers and Plastic Workers	1	T	904	
+516000	Textile, Apparel, and Furnishings Workers	1	T	943	
+517000	Woodworkers	1	T	963	
+518000	Plant and System Operators	1	T	973	
+519000	Other Production Occupations	1	T	985	
+531000	Supervisors of Transportation and Material Moving Workers	1	T	1022	
+532000	Air Transportation Workers	1	T	1026	
+533000	Motor Vehicle Operators	1	T	1034	
+534000	Rail Transportation Workers	1	T	1045	
+535000	Water Transportation Workers	1	T	1054	
+536000	Other Transportation Workers	1	T	1060	
+537000	Material Moving Workers	1	T	1068	

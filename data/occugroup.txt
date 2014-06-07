@@ -1,0 +1,23 @@
+000000	All Occupations	0	T	1	
+110000	Management Occupations	0	T	2	
+130000	Business and Financial Operations Occupations	0	T	43	
+150000	Computer and Mathematical Occupations	0	T	84	
+170000	Architecture and Engineering Occupations	0	T	111	
+190000	Life, Physical, and Social Science Occupations	0	T	156	
+210000	Community and Social Service Occupations	0	T	214	
+230000	Legal Occupations	0	T	238	
+250000	Education, Training, and Library Occupations	0	T	253	
+270000	Arts, Design, Entertainment, Sports, and Media Occupations	0	T	339	
+290000	Healthcare Practitioners and Technical Occupations	0	T	397	
+310000	Healthcare Support Occupations	0	T	471	
+330000	Protective Service Occupations	0	T	495	
+350000	Food Preparation and Serving Related Occupations	0	T	528	
+370000	Building and Grounds Cleaning and Maintenance Occupations	0	T	553	
+390000	Personal Care and Service Occupations	0	T	568	
+410000	Sales and Related Occupations	0	T	616	
+430000	Office and Administrative Support Occupations	0	T	649	
+450000	Farming, Fishing, and Forestry Occupations	0	T	715	
+470000	Construction and Extraction Occupations	0	T	735	
+490000	Installation, Maintenance, and Repair Occupations	0	T	811	
+510000	Production Occupations	0	T	878	
+530000	Transportation and Material Moving Occupations	0	T	1021	
