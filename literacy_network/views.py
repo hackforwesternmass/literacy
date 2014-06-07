@@ -23,16 +23,25 @@ def edit_volunteer(request, volunteer_id=None):
         volunteer = Volunteer.objects.get(id=volunteer_id)
     except Volunteer.DoesNotExist:
         print("Volunteer with id {0} does not exist".format(volunteer_id))
-        form = VolunteerForm()
+        vol_form = VolunteerForm()
+        resp_form = HelpResponseForm()
+        occ_form = OccupationForm()
 
     if request.method == "POST":
-        form = VolunteerForm(request.POST, request.FILES, instance=volunteer)
-        if form.is_valid():
-            svol = form.save()
+        vol_form = VolunteerForm(request.POST, request.FILES, instance=volunteer)
+        resp_form = HelpResponseForm(request.POST, request.FILES, instance=volunteer)
+        occ_form = OccupationForm(request.POST, request.FILES, instance=volunteer)
+        if vol_form.is_valid() and resp_form.is_valid() and occ_form.is_valid():
+            svol = vol_form.save()
+            sresp = resp_form.save()
+            socc = occ_form.save() 
     elif volunteer_id:
-        form = VolunteerForm(instance=volunteer)
+        vol_form = VolunteerForm(instance=volunteer)
+        resp_form = HelpResponseForm(instance=volunteer)
+        occ_form = OccupationForm(instance=volunteer)
 
-    return render(request, 'edit-volunteer.html', {"form" : form})
+    return render(request, 'edit-volunteer.html', 
+        {"vol_form" : vol_form, "resp_form" : resp_form, "occ_form" : occ_form})
 
 def volunteers(request):
     """ Presents a list of volunteers """
