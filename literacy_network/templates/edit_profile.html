@@ -7,8 +7,24 @@
     {{ vol_form.non_field_errors }}
     {% csrf_token %}
     <div class="right">
-        <h3>Occupation Info</h3>
-        {{ occ_formset.as_p }}
+        <h3>Career Info</h3>
+        {{ occ_formset.management_form }}
+        <table>
+            <thead>
+                <tr>
+                    <th>Industry</th>
+                    <th>Job Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for form in occ_formset.forms %}
+                <tr>
+                    <td>{{form.industry}}</td>
+                    <td>{{form.job_title}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         <h3>Help Info</h3>
         {{ help_formset.as_p }}
         <input type="submit"/>
