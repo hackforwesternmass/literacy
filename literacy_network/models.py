@@ -1,11 +1,12 @@
 # Contains definitions of database entities
 from django.db import models
 
+class JobSector(models.Model):
+    pass
 
 class Volunteer(models.Model):
     """ Represents a volunteer which has skills and time to donate """
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    name = models.CharField(max_length=200)
     phone = models.CharField(max_length=12)
     email = models.CharField(max_length=30, null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
@@ -20,19 +21,22 @@ class Occupation(models.Model):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
 
-class JobSector(models.Model):
-    pass
-
 class VolunteerSite(models.Model):
-    pass
+    """ Mapping between volunteers and the sites they work at """
+    volunteer = models.ForeignKey(Volunteer)
+    site = models.ForeignKey(Site)
 
 class Site(models.Model):
-    pass
+    """ Represents a location/office where a volunteer can participate """
+    name = models.CharField(max_length=100)
 
 class HelpType(models.Model):
-    pass
+    """ A type of participation that a volunteer is willing to """
+    description = models.CharField(max_length=150)
 
 class HelpTypeResponse(models.Model):
-    pass
+    volunteer = models.ForeignKey(Volunteer)
+    affirmative = models.BooleanField()
+    help_type = models.ForeignKey(HelpType)
 
 
