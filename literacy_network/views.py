@@ -8,5 +8,6 @@ import csv, sys, os
 
 
 def home(request):
-    return render(request, "home.html")
+    name = "Joe Schmo"
+    return render(request, "home.html", {"name": name})
 
