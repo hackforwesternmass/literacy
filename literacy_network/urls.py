@@ -8,7 +8,6 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:    url(r'^$', 'literacy_network.views.edit_volunteer', name='home'),
     url(r'^$', RedirectView.as_view(url='volunteers/new', permanent=False), name='home'),
-    url(r'^volunteers$', 'literacy_network.views.volunteers', name='volunteers'),
     url(r'^volunteers/new$', 'literacy_network.views.edit_volunteer', name='new-volunteer'),
     url(r'^volunteers/(?P<volunteer_id>\d{1,10})$', 'literacy_network.views.edit_volunteer', name='home'),
 
@@ -17,4 +16,5 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/volunteers/+$', 'literacy_network.views.volunteers', name='volunteers'),
 )
