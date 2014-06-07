@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_protect
 from datetime import datetime, timedelta
 from django.db import DatabaseError
 from django.utils import simplejson
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from literacy_network.models import *
 from literacy_network.forms import *
@@ -21,28 +22,30 @@ def edit_volunteer(request, volunteer_id=None):
     volunteer = None
     try:
         volunteer = Volunteer.objects.get(id=volunteer_id)
+        user = User.objects.get(volunteer.user_id)
     except Volunteer.DoesNotExist:
         print("Volunteer with id {0} does not exist".format(volunteer_id))
         vol_form = VolunteerForm()
-        resp_form = HelpResponseForm()
-        occ_form = OccupationForm()
+        user_form = UserCreationForm()
+    except User.DoesNotExist:
+        user_form = UserCreationForm()
 
     if request.method == "POST":
         vol_form = VolunteerForm(request.POST, request.FILES, instance=volunteer)
-        resp_form = HelpResponseForm(request.POST, request.FILES, instance=volunteer)
-        occ_form = OccupationForm(request.POST, request.FILES, instance=volunteer)
-        if vol_form.is_valid() and resp_form.is_valid() and occ_form.is_valid():
+        user_form = UserCreationForm(request.POST, request.FILES, instance=user)
+
+        if vol_form.is_valid():
             svol = vol_form.save()
-            sresp = resp_form.save()
-            socc = occ_form.save() 
+            user_form.save()
     elif volunteer_id:
         vol_form = VolunteerForm(instance=volunteer)
-        resp_form = HelpResponseForm(instance=volunteer)
-        occ_form = OccupationForm(instance=volunteer)
+        if user:
+            user_form = UserCreationForm(instance=user)
 
     return render(request, 'edit-volunteer.html', 
-        {"vol_form" : vol_form, "resp_form" : resp_form, "occ_form" : occ_form})
+        {"vol_form" : vol_form, "user_form" : user_form })
 
+@login_required
 def volunteers(request):
     """ Presents a list of volunteers """
     volunteers = Volunteer.objects.all()

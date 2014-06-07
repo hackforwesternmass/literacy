@@ -6,6 +6,10 @@ class VolunteerForm(forms.ModelForm):
     class Meta:
         model = Volunteer
 
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+
 HelpResponseForm = inlineformset_factory(
     Volunteer, HelpTypeResponse, extra=0, can_delete=False)
 OccupationForm = inlineformset_factory(
