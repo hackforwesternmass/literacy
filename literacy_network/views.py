@@ -17,6 +17,7 @@ def edit_volunteer(request, volunteer_id=None):
         Returns a view used to edit the volunteer on GET,
             or a redirection to the volunteer list on POST
     """
+    print("Volunteer with id {0} requested".format(volunteer_id))
     volunteer = None
     try:
         volunteer = Volunteer.objects.get(id=volunteer_id)

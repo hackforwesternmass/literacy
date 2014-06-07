@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'literacy_network.views.edit_volunteer', name='home'),
+    url(r'^(?P<volunteer_id>\d{1,10})$', 'literacy_network.views.edit_volunteer', name='home'),
     # url(r'^literacy_network/', include('literacy_network.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
