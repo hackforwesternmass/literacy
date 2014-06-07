@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 
 class Industry(models.Model):
 	"""Represents industries that volunteers may have experience in"""
-	name = models.CharField(max_length=100, verbose_name = 'industry name')
-	code = models.CharField(max_length=10)
 	def __unicode__(self):
 		return self.name
+	name = models.CharField(max_length=100, verbose_name = 'industry name')
+	code = models.CharField(max_length=10)
 	class Meta:
 		verbose_name_plural = "industries"
 
@@ -30,6 +30,7 @@ class Volunteer(models.Model):
 
     occupation_notes = models.TextField(null=True, blank=True)
     volunteer_notes = models.TextField(null=True, blank=True)
+
 
     is_public = models.BooleanField(default=False)
     linkedin_link = models.CharField(max_length=100, null=True, blank=True)
