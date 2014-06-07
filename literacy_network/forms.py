@@ -11,7 +11,7 @@ class UserForm(forms.ModelForm):
         model = User
 
 HelpResponseFormset = inlineformset_factory(
-    Volunteer, HelpTypeResponse, extra=3, can_delete=False)
+    Volunteer, HelpTypeResponse, extra=0, can_delete=False)
 OccupationFormset = inlineformset_factory(
     Volunteer, Occupation, extra=3, can_delete=False)
 SiteForm = inlineformset_factory(

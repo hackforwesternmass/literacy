@@ -10,7 +10,14 @@
         <h3>Occupation Info</h3>
         {{ occ_formset.as_p }}
         <h3>Help Info</h3>
-        {{ help_formset.as_p }}
+        {{ help_formset.management_form }}
+        {% for help_form in help_formset %}
+            {{ help_form.affirmative }}
+            {{ help_form.help_type.as_hidden }}
+            {{ help_form.id }}
+            {{ help_form.instance.help_type.description }}
+            <br />
+        {% endfor %}
         <input type="submit"/>
     </div>
 

@@ -22,13 +22,17 @@
         {{ vol_form.phone }}
 
         {{ user_form.non_field_errors }}
+
+        {{ user_form.username.errors }}
         <label for="id_username">Contact Email</label>
         {{ user_form.username }}
 
     
+        {{ user_form.password1.errors }}
         <label for="id_username">Password</label>
         {{ user_form.password1 }}
 
+        {{ user_form.password2.errors }}
         <label for="id_username">Confirm Password</label>
         {{ user_form.password2 }}
 
