@@ -9,17 +9,6 @@
     {% csrf_token %}
     <div class="right">
 
-        <label for="id_name">Name:</label>
-        {{ form.name.errors }}
-        {{ form.name|tabindex:1 }}
-
-        <label for="id_phone">Contact Phone</label>
-        {{ form.phone.errors }}
-        {{ form.phone|tabindex:2 }}
-
-        <label for="id_email">Contact Email</label>
-        {{ form.email.errors }}
-        {{ form.email|tabindex:3 }}
 
     </div>
 
