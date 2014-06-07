@@ -15,7 +15,7 @@ class Volunteer(models.Model):
     email = models.CharField(max_length=30, null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
     is_public = models.BooleanField(default=False)
-    linkedin_link = models.CharField(max_length=100)
+    linkedin_link = models.CharField(max_length=100, null=True, blank=True)
 
 class Occupation(models.Model):
     """ An occupation held by a volunteer for some time period """
