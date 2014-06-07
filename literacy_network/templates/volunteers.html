@@ -1,0 +1,37 @@
+
+{% load tag_extras %}
+{% include "topmatter.html" %}
+
+<fieldset>
+    <legend>Volunteers</legend>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Contact Phone</th>
+                <th>Contact Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for volunteer in volunteers %}
+                <tr>
+                    <td>{{ volunteer.first_name }}</td>
+                    <td>{{ volunteer.last_name }}</td>
+                    <td>{{ volunteer.phone }}</td>
+                    <td>{{ volunteer.email }}</td>
+                    <td>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</fieldset>
+
+
+{% include "footer.html" %}
+

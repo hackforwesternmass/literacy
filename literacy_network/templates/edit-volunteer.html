@@ -5,22 +5,33 @@
 {% include "topmatter.html" %}
 
 <form method="post" action="">
-    {{ form.non_field_errors }}
+    {{ vol_form.non_field_errors }}
     {% csrf_token %}
     <div class="right">
 
-        <label for="id_name">Name</label>
-        {{ form.name.errors }}
-        {{ form.name }}
+        <label for="id_first_name">First Name</label>
+        {{ vol_form.first_name.errors }}
+        {{ vol_form.first_name }}
+
+        <label for="id_last_name">Last Name</label>
+        {{ vol_form.last_name.errors }}
+        {{ vol_form.last_name }}
 
         <label for="id_phone">Contact Phone</label>
-        {{ form.phone.errors }}
-        {{ form.phone }}
+        {{ vol_form.phone.errors }}
+        {{ vol_form.phone }}
 
         <label for="id_email">Contact Email</label>
-        {{ form.email.errors }}
-        {{ form.email }}
+        {{ vol_form.email.errors }}
+        {{ vol_form.email }}
 
+        {{ user_form.non_field_errors }}
+        {{ user_form }}
+
+    </div>
+
+    <div style="display: block;">
+        <input style="display: block; margin-top: 5px;" class="round-button" type="submit" value="Submit" tabindex="10"/>
     </div>
 
 </form>

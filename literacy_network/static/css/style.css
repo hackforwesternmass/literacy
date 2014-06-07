@@ -64,7 +64,6 @@ legend {
 
 body {
 	/* font-size: 62.5%; */
-	background: url(../images/stripe.png) repeat;
 }
 
 h1 {
@@ -127,68 +126,20 @@ a.round-button {
 	background: white;
 	min-width: 780px;
 	max-width: 1260px;
-	margin: 10px auto;
 	}
-	#page-wrap #inside {
-		margin: 10px 10px 0px 10px;
-		padding-top: 10px;
-		padding-bottom: 10px;
-	}
+
+#page-wrap #inside {
+}
 	
 #main-content {
-	background: url(../images/left-sidebar.gif) repeat-y white;
-	padding-left: 230px;
-	padding-top: 20px;
-    border: 1px solid transparent;
-    min-height: 200px;
 }
 	
 #header {
-	background: #7D9292;
-	text-align: center;
-    border-bottom: 1px solid;
-    border-color: transparent;
+    background: purple;
 }
 	
-#left-sidebar {
-	width: 210px;
-	float: left;
-	padding-top: 20px;
-}
-
-#left-sidebar p, li{
-    font: 1.2em/1.8em Tahoma, sans-serif;
-    margin-bottom: 10px;
-}
-
 .errorlist li {
     color: red;
     margin-left: 20px;
 }
 
-#left-sidebar ul {
-    list-style-type: none;
-	font: 1.5em Tahoma, sans-serif;
-    background: #333C3C;
-    margin-left: 2px;
-}
-
-#left-sidebar a {
-    padding-left: 20px;
-    text-decoration: none;
-    display: block;
-    color: white;
-}
-
-#left-sidebar a:hover {
-    font-style: oblique;
-    background: rgb(86, 87, 87);
-}
-
-#footer {
-	background: #7D9292;
-	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	color: white;
-}

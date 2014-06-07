@@ -1,5 +1,6 @@
 # Contains definitions of database entities
 from django.db import models
+from django.contrib.auth.models import User
 
 class Industry(models.Model):
 	"""Represents industries that volunteers may have experience in"""
@@ -16,12 +17,24 @@ class Site(models.Model):
 
 class Volunteer(models.Model):
     """ Represents a volunteer which has skills and time to donate """
-    name = models.CharField(max_length=200, verbose_name = 'volunteer\'s name')
+    first_name = models.CharField(max_length=200, verbose_name = 'volunteer\'s first name')
+    last_name = models.CharField(max_length=200, verbose_name = 'volunteer\'s last name')
     phone = models.CharField(max_length=12, verbose_name = 'volunteer\'s phone number')
     email = models.CharField(max_length=30, null=True, blank=True, verbose_name = 'volunteer\'s email address')
-    notes = models.TextField(null=True, blank=True)
+
+    address_line1 = models.CharField(max_length=100, null=True, blank=True)
+    address_line2 = models.CharField(max_length=100, null=True, blank=True)
+    state = models.CharField(max_length=2, null=True, blank=True)
+    city = models.CharField(max_length=50, null=True, blank=True)
+    zipcode = models.CharField(max_length=10, null=True, blank=True)
+
+    occupation_notes = models.TextField(null=True, blank=True)
+    volunteer_notes = models.TextField(null=True, blank=True)
+
     is_public = models.BooleanField(default=False)
     linkedin_link = models.CharField(max_length=100, null=True, blank=True)
+
+    user = models.ForeignKey(User, null=True, blank=True)
 
 class Occupation(models.Model):
     """ An occupation held by a volunteer for some time period """
@@ -39,10 +52,12 @@ class VolunteerSite(models.Model):
 class HelpType(models.Model):
     """ A type of participation that a volunteer is willing to """
     description = models.CharField(max_length=150)
+    has_details = models.BooleanField()
 
 class HelpTypeResponse(models.Model):
     volunteer = models.ForeignKey(Volunteer)
     affirmative = models.BooleanField()
     help_type = models.ForeignKey(HelpType)
+    details = models.TextField()
 
 
