@@ -29,7 +29,7 @@ class Volunteer(models.Model):
     is_public = models.BooleanField(default=False)
     linkedin_link = models.CharField(max_length=100, null=True, blank=True)
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, null=True, blank=True)
 
 class Occupation(models.Model):
     """ An occupation held by a volunteer for some time period """

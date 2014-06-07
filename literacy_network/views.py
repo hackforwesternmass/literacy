@@ -22,21 +22,31 @@ def edit_volunteer(request, volunteer_id=None):
     volunteer = None
     try:
         volunteer = Volunteer.objects.get(id=volunteer_id)
-        user = User.objects.get(volunteer.user_id)
+        user = User.objects.get(id=volunteer.user_id)
     except Volunteer.DoesNotExist:
         print("Volunteer with id {0} does not exist".format(volunteer_id))
         vol_form = VolunteerForm()
         user_form = UserCreationForm()
+        user = User()
     except User.DoesNotExist:
         user_form = UserCreationForm()
 
     if request.method == "POST":
+        print("Handling post ...")
         vol_form = VolunteerForm(request.POST, request.FILES, instance=volunteer)
         user_form = UserCreationForm(request.POST, request.FILES, instance=user)
 
-        if vol_form.is_valid():
+        if vol_form.is_valid() and user_form.is_valid():
+            print("Forms valid!")
             svol = vol_form.save()
-            user_form.save()
+            user = user_form.save()
+            
+            return redirect("/volunteers/edit-occupation",  
+                        {"volunteer_id" : svol.id})
+        else:
+            print("Forms not valid!")
+            print(vol_form.errors)
+            print(user_form.errors)
     elif volunteer_id:
         vol_form = VolunteerForm(instance=volunteer)
         if user:
