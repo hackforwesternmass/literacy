@@ -35,4 +35,4 @@ def edit_volunteer(request, volunteer_id=None):
         form = VolunteerForm(instance=volunteer)
 
     return render(request, 'edit-volunteer.html',
-        {"form" : form, "participation" : participation})
+        {"form" : form})
