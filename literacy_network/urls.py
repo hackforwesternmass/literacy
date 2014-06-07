@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     url(r'^$', RedirectView.as_view(url='volunteers/new', permanent=False), name='home'),
     url(r'^volunteers/new$', 'literacy_network.views.edit_volunteer', name='home'),
     url(r'^volunteers/(?P<volunteer_id>\d{1,10})$', 'literacy_network.views.edit_volunteer', name='home'),
+	url(r'^upload-industries$', 'literacy_network.views.upload_industries', name='industries'),
+
     # url(r'^literacy_network/', include('literacy_network.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

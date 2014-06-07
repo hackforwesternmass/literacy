@@ -33,4 +33,14 @@ def edit_volunteer(request, volunteer_id=None):
         form = VolunteerForm(instance=volunteer)
 
     return render(request, 'edit-volunteer.html',
+
         {"form" : form})
+def upload_industries(request):
+	'''Handles upload of industry data in CSV format'''
+	for row in csv.DictReader(request.FILES["industries-csv"]):
+		industry = Industry()
+		industry.code=row["Industry_Code"]
+		industry.name=row["Industry_Name"]
+		industry.save()
+		
+	return redirect("/")
