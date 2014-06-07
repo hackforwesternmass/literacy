@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^$', RedirectView.as_view(url='volunteers/new', permanent=False), name='home'),
     url(r'^volunteers/new$', 'literacy_network.views.edit_volunteer', name='new-volunteer'),
     url(r'^volunteers/(?P<volunteer_id>\d{1,10})$', 'literacy_network.views.edit_volunteer', name='home'),
+    url(r'^volunteers/profile/(?P<volunteer_id>\d{1,10})$', 'literacy_network.views.edit_volunteer_profile'),
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', name="auth_login"),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {"next_page" : "/"}, name="auth_logout"),

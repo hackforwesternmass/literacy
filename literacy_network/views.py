@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
 from datetime import datetime, timedelta
 from django.db import DatabaseError
@@ -44,6 +44,26 @@ def edit_volunteer(request, volunteer_id=None):
 
     return render(request, 'edit-volunteer.html', 
         {"vol_form" : vol_form, "user_form" : user_form })
+
+def edit_volunteer_profile(request, volunteer_id):
+    volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
+    data = {}
+
+    if request.method == 'POST':
+        occ_formset = OccupationFormset(request.POST, instance=volunteer)
+        help_formset = HelpResponseFormset(request.POST, instance=volunteer)
+
+        if occ_formset.is_valid() and help_formset.is_valid():
+            occ_formset.save()
+            help_formset.save()
+    else:
+        occ_formset = OccupationFormset(instance=volunteer)
+        help_formset = HelpResponseFormset(instance=volunteer)
+
+    return render(request, 'edit_profile.html', {
+        'occ_formset' : occ_formset,
+        'help_formset' : help_formset,
+    })
 
 @login_required
 def volunteers(request):
