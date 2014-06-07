@@ -21,13 +21,18 @@
         {{ vol_form.phone.errors }}
         {{ vol_form.phone }}
 
-        <label for="id_email">Contact Email</label>
-        {{ vol_form.email.errors }}
-        {{ vol_form.email }}
-
         {{ user_form.non_field_errors }}
-        {{ user_form }}
+        <label for="id_username">Contact Email</label>
+        {{ user_form.username }}
 
+    
+        <label for="id_username">Password</label>
+        {{ user_form.password1 }}
+
+        <label for="id_username">Confirm Password</label>
+        {{ user_form.password2 }}
+
+        <input type="submit" value="Next" />
     </div>
 
     <div style="display: block;">
