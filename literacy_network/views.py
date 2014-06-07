@@ -21,11 +21,9 @@ def edit_volunteer(request, volunteer_id=None):
     volunteer = None
     try:
         volunteer = Volunteer.objects.get(id=volunteer_id)
-        participation = volunteer.volunteerparticipation_set.all()
     except Volunteer.DoesNotExist:
         print("Volunteer with id {0} does not exist".format(volunteer_id))
         form = VolunteerForm()
-        participation = []
 
     if request.method == "POST":
         form = VolunteerForm(request.POST, request.FILES, instance=volunteer)
