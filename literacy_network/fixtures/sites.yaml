@@ -1,0 +1,15 @@
+- model: literacy_network.Site
+  fields:
+    name: Amherst
+- model: literacy_network.Site
+  fields:
+    name: Northampton
+- model: literacy_network.Site
+  fields:
+    name: Greenfield
+- model: literacy_network.Site
+  fields:
+    name: Orange
+- model: literacy_network.Site
+  fields:
+    name: Ware

@@ -59,20 +59,32 @@ def edit_volunteer_profile(request, volunteer_id):
         resp = HelpTypeResponse.objects.create(volunteer=volunteer, 
                 help_type=helptype, affirmative=False)
 
+    # make sure there is a record for each class site
+    new_sites = [s for s in Site.objects.all()
+                    if not s in [r.site for r in volunteer.volunteersite_set.all()]]
+    for site in new_sites:
+        addsite = VolunteerSite.objects.create(volunteer=volunteer, 
+                            site=site, affirmative=False)
+
     if request.method == 'POST':
         occ_formset = OccupationFormset(request.POST, instance=volunteer)
         help_formset = HelpResponseFormset(request.POST, instance=volunteer)
+        site_formset = SiteFormset(request.POST, instance=volunteer)
 
-        if occ_formset.is_valid() and help_formset.is_valid():
+        if occ_formset.is_valid() and help_formset.is_valid() \
+                    and site_formset.is_valid():
             occ_formset.save()
             help_formset.save()
+            site_formset.save()
     else:
         occ_formset = OccupationFormset(instance=volunteer)
         help_formset = HelpResponseFormset(instance=volunteer)
+        site_formset = SiteFormset(instance=volunteer)
 
     return render(request, 'edit_profile.html', {
         'occ_formset' : occ_formset,
         'help_formset' : help_formset,
+        "site_formset" : site_formset
     })
 
 @login_required

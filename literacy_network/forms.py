@@ -19,7 +19,7 @@ HelpResponseFormset = inlineformset_factory(
     Volunteer, HelpTypeResponse, extra=0, can_delete=False)
 OccupationFormset = inlineformset_factory(
     Volunteer, Occupation, form=OccupationForm, extra=3, can_delete=False)
-SiteForm = inlineformset_factory(
+SiteFormset = inlineformset_factory(
     Volunteer, VolunteerSite, extra=0, can_delete=False)
 
 

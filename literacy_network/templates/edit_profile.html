@@ -25,6 +25,17 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <h3>Locations</h3>
+        {{ site_formset.management_form }}
+        {% for site_form in site_formset %}
+            {{ site_form.affirmative }}
+            {{ site_form.site.as_hidden }}
+            {{ site_form.id }}
+            {{ site_form.instance.site.name }}
+            <br />
+        {% endfor %}
+
         <h3>Help Info</h3>
         {{ help_formset.management_form }}
         {% for help_form in help_formset %}
@@ -35,10 +46,6 @@
             <br />
         {% endfor %}
         <input type="submit"/>
-    </div>
-
-    <div style="display: block;">
-        <input style="display: block; margin-top: 5px;" class="round-button" type="submit" value="Submit" tabindex="10"/>
     </div>
 
 </form>
