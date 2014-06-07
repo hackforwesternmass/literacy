@@ -1,8 +1,8 @@
 # Contains definitions of database entities
 from django.db import models
 
-class JobSector(models.Model):
-    pass
+class Industry(models.Model):
+    name = models.CharField(max_length=100)
 
 class Site(models.Model):
     """ Represents a location/office where a volunteer can participate """
@@ -21,7 +21,7 @@ class Occupation(models.Model):
     """ An occupation held by a volunteer for some time period """
     volunteer = models.ForeignKey(Volunteer)
     job_title = models.CharField(max_length=50)
-    job_sector = models.ForeignKey(JobSector, verbose_name="Job Sector")
+    industry = models.ForeignKey(Industry, verbose_name="Industry")
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
 
