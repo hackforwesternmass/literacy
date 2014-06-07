@@ -24,7 +24,6 @@ def edit_volunteer(request, volunteer_id=None):
         volunteer = Volunteer.objects.get(id=volunteer_id)
         user = User.objects.get(id=volunteer.user_id)
     except Volunteer.DoesNotExist:
-        print("Volunteer with id {0} does not exist".format(volunteer_id))
         vol_form = VolunteerForm()
         user_form = UserCreationForm()
         user = User()
@@ -32,21 +31,14 @@ def edit_volunteer(request, volunteer_id=None):
         user_form = UserCreationForm()
 
     if request.method == "POST":
-        print("Handling post ...")
         vol_form = VolunteerForm(request.POST, request.FILES, instance=volunteer)
         user_form = UserCreationForm(request.POST, request.FILES, instance=user)
 
         if vol_form.is_valid() and user_form.is_valid():
-            print("Forms valid!")
             svol = vol_form.save()
             user = user_form.save()
 
-            return redirect("/volunteers/edit-occupation",
-                        {"volunteer_id" : svol.id})
-        else:
-            print("Forms not valid!")
-            print(vol_form.errors)
-            print(user_form.errors)
+            return redirect("/volunteers/profile/" + str(svol.id)) # shameless hack
     elif volunteer_id:
         vol_form = VolunteerForm(instance=volunteer)
         if user:
@@ -59,20 +51,40 @@ def edit_volunteer_profile(request, volunteer_id):
     volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
     data = {}
 
+    # make sure there is a record for each volunteer help type
+    new_helps = [q for q in HelpType.objects.all()
+                    if not q in [r.help_type for r in 
+                             volunteer.helptyperesponse_set.all()]]
+    for helptype in new_helps:
+        resp = HelpTypeResponse.objects.create(volunteer=volunteer, 
+                help_type=helptype, affirmative=False)
+
+    # make sure there is a record for each class site
+    new_sites = [s for s in Site.objects.all()
+                    if not s in [r.site for r in volunteer.volunteersite_set.all()]]
+    for site in new_sites:
+        addsite = VolunteerSite.objects.create(volunteer=volunteer, 
+                            site=site, affirmative=False)
+
     if request.method == 'POST':
         occ_formset = OccupationFormset(request.POST, instance=volunteer)
         help_formset = HelpResponseFormset(request.POST, instance=volunteer)
+        site_formset = SiteFormset(request.POST, instance=volunteer)
 
-        if occ_formset.is_valid() and help_formset.is_valid():
+        if occ_formset.is_valid() and help_formset.is_valid() \
+                    and site_formset.is_valid():
             occ_formset.save()
             help_formset.save()
+            site_formset.save()
     else:
         occ_formset = OccupationFormset(instance=volunteer)
         help_formset = HelpResponseFormset(instance=volunteer)
+        site_formset = SiteFormset(instance=volunteer)
 
     return render(request, 'edit_profile.html', {
         'occ_formset' : occ_formset,
         'help_formset' : help_formset,
+        "site_formset" : site_formset
     })
 
 @login_required

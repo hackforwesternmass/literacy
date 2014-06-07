@@ -10,11 +10,16 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
 
+class OccupationForm(forms.ModelForm):
+    class Meta:
+        model = Occupation
+        exclude = ['start_date', 'end_date']
+
 HelpResponseFormset = inlineformset_factory(
-    Volunteer, HelpTypeResponse, extra=3, can_delete=False)
+    Volunteer, HelpTypeResponse, extra=0, can_delete=False)
 OccupationFormset = inlineformset_factory(
-    Volunteer, Occupation, extra=3, can_delete=False)
-SiteForm = inlineformset_factory(
+    Volunteer, Occupation, form=OccupationForm, extra=3, can_delete=False)
+SiteFormset = inlineformset_factory(
     Volunteer, VolunteerSite, extra=0, can_delete=False)
 
 

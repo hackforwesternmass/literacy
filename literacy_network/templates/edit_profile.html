@@ -7,15 +7,45 @@
     {{ vol_form.non_field_errors }}
     {% csrf_token %}
     <div class="right">
-        <h3>Occupation Info</h3>
-        {{ occ_formset.as_p }}
-        <h3>Help Info</h3>
-        {{ help_formset.as_p }}
-        <input type="submit"/>
-    </div>
+        <h3>Career Info</h3>
+        {{ occ_formset.management_form }}
+        <table>
+            <thead>
+                <tr>
+                    <th>Industry</th>
+                    <th>Job Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for form in occ_formset.forms %}
+                <tr>
+                    <td>{{form.industry}}</td>
+                    <td>{{form.job_title}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-    <div style="display: block;">
-        <input style="display: block; margin-top: 5px;" class="round-button" type="submit" value="Submit" tabindex="10"/>
+        <h3>Locations</h3>
+        {{ site_formset.management_form }}
+        {% for site_form in site_formset %}
+            {{ site_form.affirmative }}
+            {{ site_form.site.as_hidden }}
+            {{ site_form.id }}
+            {{ site_form.instance.site.name }}
+            <br />
+        {% endfor %}
+
+        <h3>Help Info</h3>
+        {{ help_formset.management_form }}
+        {% for help_form in help_formset %}
+            {{ help_form.affirmative }}
+            {{ help_form.help_type.as_hidden }}
+            {{ help_form.id }}
+            {{ help_form.instance.help_type.description }}
+            <br />
+        {% endfor %}
+        <input type="submit"/>
     </div>
 
 </form>

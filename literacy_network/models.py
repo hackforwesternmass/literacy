@@ -13,7 +13,7 @@ class Industry(models.Model):
 
 class Site(models.Model):
     """ Represents a location/office where a volunteer can participate """
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
 class Volunteer(models.Model):
     """ Represents a volunteer which has skills and time to donate """
