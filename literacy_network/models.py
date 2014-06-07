@@ -2,8 +2,13 @@
 from django.db import models
 
 class Industry(models.Model):
-    name = models.CharField(max_length=100)
-    code = models.CharField(max_length=10)
+	"""Represents industries that volunteers may have experience in"""
+	name = models.CharField(max_length=100, verbose_name = 'industry name')
+	code = models.CharField(max_length=10)
+	def __unicode__(self):
+		return self.name
+	class Meta:
+		verbose_name_plural = "industries"
 
 class Site(models.Model):
     """ Represents a location/office where a volunteer can participate """
@@ -11,9 +16,9 @@ class Site(models.Model):
 
 class Volunteer(models.Model):
     """ Represents a volunteer which has skills and time to donate """
-    name = models.CharField(max_length=200)
-    phone = models.CharField(max_length=12)
-    email = models.CharField(max_length=30, null=True, blank=True)
+    name = models.CharField(max_length=200, verbose_name = 'volunteer\'s name')
+    phone = models.CharField(max_length=12, verbose_name = 'volunteer\'s phone number')
+    email = models.CharField(max_length=30, null=True, blank=True, verbose_name = 'volunteer\'s email address')
     notes = models.TextField(null=True, blank=True)
     is_public = models.BooleanField(default=False)
     linkedin_link = models.CharField(max_length=100, null=True, blank=True)
