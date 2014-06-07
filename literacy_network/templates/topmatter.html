@@ -12,46 +12,17 @@
     <script type="text/javascript" src="/static/js/jquery.formset.js"></script>
     <script type="text/javascript" src="/static/js/jquery.uniform.js"></script>
     <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="/static/js/application.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/jquery.dataTables.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/TableTools.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/uniform.default.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/overcast/jquery-ui-1.10.3.custom.min.css"/>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            if(typeof customExportTitle == "undefined") {
-                customExportTitle = document.title;
-            }
-
-            $(".data-table").dataTable({
-                "bLengthChange" : false,
-                "iDisplayLength": 100,
-                "sDom": 'T<"clear">lfrtip',
-                "oTableTools": {
-                    "sSwfPath": "/static/swf/copy_csv_xls_pdf.swf",
-                    "aButtons" : [
-                        {
-                            "sExtends" : "xls",
-                            "sTitle" : customExportTitle
-                        },
-                        {
-                            "sExtends" : "pdf",
-                            "sTitle" : customExportTitle
-                        }
-                    ]
-                }
-            });
-
-            $("select, input[type=text], input[type=checkbox], password").uniform();
-        });
-
-    </script>
 </head>
 <body>
 <div id="page-wrap">
     <div id="inside">
         <div id="header">
-            <a href="/"><img src="/static/images/logo.jpg" width=150/></a>
+            <a href="/"><img src="/static/images/logo.png" width=150/></a>
         </div>
         <div id="login-box" style="text-align: right;">
             {% if not user.is_authenticated %}
@@ -62,4 +33,4 @@
         </div>
     </div>
 
-        <div id="main-content">
+    <div id="main-content">

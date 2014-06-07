@@ -3,8 +3,13 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Industry(models.Model):
-    name = models.CharField(max_length=100)
-    code = models.CharField(max_length=10)
+	"""Represents industries that volunteers may have experience in"""
+	def __unicode__(self):
+		return self.name
+	name = models.CharField(max_length=100, verbose_name = 'industry name')
+	code = models.CharField(max_length=10)
+	class Meta:
+		verbose_name_plural = "industries"
 
 class Site(models.Model):
     """ Represents a location/office where a volunteer can participate """
@@ -12,10 +17,10 @@ class Site(models.Model):
 
 class Volunteer(models.Model):
     """ Represents a volunteer which has skills and time to donate """
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
-    phone = models.CharField(max_length=12)
-    email = models.CharField(max_length=30, null=True, blank=True)
+    first_name = models.CharField(max_length=200, verbose_name = 'volunteer\'s first name')
+    last_name = models.CharField(max_length=200, verbose_name = 'volunteer\'s last name')
+    phone = models.CharField(max_length=12, verbose_name = 'volunteer\'s phone number')
+    email = models.CharField(max_length=30, null=True, blank=True, verbose_name = 'volunteer\'s email address')
 
     address_line1 = models.CharField(max_length=100, null=True, blank=True)
     address_line2 = models.CharField(max_length=100, null=True, blank=True)
@@ -26,10 +31,11 @@ class Volunteer(models.Model):
     occupation_notes = models.TextField(null=True, blank=True)
     volunteer_notes = models.TextField(null=True, blank=True)
 
+
     is_public = models.BooleanField(default=False)
     linkedin_link = models.CharField(max_length=100, null=True, blank=True)
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, null=True, blank=True)
 
 class Occupation(models.Model):
     """ An occupation held by a volunteer for some time period """

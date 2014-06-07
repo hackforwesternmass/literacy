@@ -135,7 +135,9 @@ a.round-button {
 }
 	
 #header {
-    background: purple;
+    background: rgba(56, 14, 59, 0.85);
+    height: 104px;
+    font-family: "futura-pt-condensed";
 }
 	
 .errorlist li {
