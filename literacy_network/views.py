@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_protect
 from datetime import datetime, timedelta
 from django.db import DatabaseError
 from django.utils import simplejson
-from django.contrib.auth.forms import UserCreationForm, UserEditForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from literacy_network.models import *
 from literacy_network.forms import *
@@ -123,7 +123,7 @@ def edit_volunteer_profile(request, volunteer_id, hide_contact_form=False):
             print(site_formset.errors)
     else:
         vol_form = VolunteerForm(instance=volunteer)
-        edit_form = UserEditForm(instance=request.user)
+        user_form = UserEditForm(instance=request.user)
         occ_formset = OccupationFormset(instance=volunteer, prefix="occ")
         help_formset = HelpResponseFormset(instance=volunteer, prefix="help")
         site_formset = SiteFormset(instance=volunteer, prefix="site")

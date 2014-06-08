@@ -10,6 +10,14 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
 
+class UserEditForm(forms.ModelForm):   
+    class Meta:
+        model = User
+        fields = ('username', )
+
+    def save(self, commit=True):
+        user = super(UserEditForm, self).save(commit=False) 
+
 class OccupationForm(forms.ModelForm):
     class Meta:
         model = Occupation
