@@ -64,8 +64,10 @@
             </td>
             <td>
                 {% for site in volunteer.volunteersite_set.all %}
-                {{ site.site.name }}
-                {{ site.name }}<br>
+                    {% if site.affirmative %}
+                        {{ site.site.name }}
+                        {{ site.name }}<br>
+                    {% endif %}
                 {% endfor %}
             </td>
             <!--<td>
