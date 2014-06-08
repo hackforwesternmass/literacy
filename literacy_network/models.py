@@ -5,16 +5,20 @@ from localflavor.us.models import USStateField
 
 class Industry(models.Model):
 	"""Represents industries that volunteers may have experience in"""
+
 	def __unicode__(self):
 		return self.name
+
 	name = models.CharField(max_length=100, verbose_name = 'industry name')
 	code = models.CharField(max_length=10)
+
 	class Meta:
 		verbose_name_plural = "industries"
 
 class Site(models.Model):
     """ Represents a location/office where a volunteer can participate """
     name = models.CharField(max_length=100, unique=True)
+    
 
 class Volunteer(models.Model):
     """ Represents a volunteer which has skills and time to donate """

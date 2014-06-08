@@ -122,9 +122,11 @@ def view_volunteer(request, volunteer_id):
     """ Opens a page for staff members or the public 
         (if the profile is public-enabled) to view a volunteer
     """
-    # TODO: check if volunteer is public. if not, and user is not staff, deny request
     volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
-    if not volunteer.is_public:
+    if not volunteer.is_public and not \
+        (request.user.is_authenticated and 
+            (request.user.pk == volunteer.user.pk or 
+                request.user.is_superuser or request.user.is_staff)):
         raise PermissionDenied()
     return render(request, "view-volunteer.html", {"volunteer" : volunteer})
     
