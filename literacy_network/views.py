@@ -21,12 +21,11 @@ def home_redirect(request):
     else:
         return redirect("new-volunteer")
 
-def logout(request):
+def logged_out(request):
     """ Renders a page notifying the user that they have logged out
         and points them back to the organization's main site
     """
-    return render(requst, "logout.html")
-
+    return render(request, "logged-out.html")
 
 def edit_volunteer(request, volunteer_id=None):
     """ Presents a view used to edit a volunteer
@@ -89,24 +88,29 @@ def edit_volunteer_profile(request, volunteer_id):
                             site=site, affirmative=False)
 
     if request.method == 'POST':
+        vol_form = VolunteerForm(request.POST, instance=volunteer)
         occ_formset = OccupationFormset(request.POST, instance=volunteer)
         help_formset = HelpResponseFormset(request.POST, instance=volunteer)
         site_formset = SiteFormset(request.POST, instance=volunteer)
 
         if occ_formset.is_valid() and help_formset.is_valid() \
-                    and site_formset.is_valid():
+                    and site_formset.is_valid() and vol_form.is_valid():
+            vol_form.save()
             occ_formset.save()
             help_formset.save()
             site_formset.save()
     else:
+        vol_form = VolunteerForm(request.POST, instance=volunteer)
         occ_formset = OccupationFormset(instance=volunteer)
         help_formset = HelpResponseFormset(instance=volunteer)
         site_formset = SiteFormset(instance=volunteer)
 
     return render(request, 'edit_profile.html', {
+        "vol_form" : vol_form,
         'occ_formset' : occ_formset,
         'help_formset' : help_formset,
-        "site_formset" : site_formset
+        "site_formset" : site_formset,
+        "anchor" : None
     })
 
 def view_volunteer(request, volunteer_id):
@@ -117,7 +121,6 @@ def view_volunteer(request, volunteer_id):
     volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
     return render(request, "view-volunteer.html", {"volunteer" : volunteer})
     
-
 @user_passes_test(lambda u: u.is_staff)
 def volunteers(request):
     """ Presents a list of volunteers """

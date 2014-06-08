@@ -4,10 +4,19 @@
 {% include "topmatter.html" %}
 
 <form method="post" action="">
-    {{ vol_form.non_field_errors }}
     {% csrf_token %}
     <div class="right">
-        <h3>Career Info</h3>
+        <h3>Contact Information</h3>
+        <a id="contact"></a>
+        {{ vol_form.non_field_errors }}
+        <label for="id_first_name">First Name</label>
+        {{ vol_form.first_name }}
+        <label for="id_last_name">Last Name</label>
+        {{ vol_form.last_name }}
+
+
+        <h3 style="margin-top: 50px;">Career Information</h3>
+        <a id="career"></a>
         {{ occ_formset.management_form }}
 
         What field do you work in?
@@ -40,19 +49,9 @@
         </table>
         </div>
 
-        
 
-        <h3>Locations</h3>
-        {{ site_formset.management_form }}
-        {% for site_form in site_formset %}
-            {{ site_form.affirmative }}
-            {{ site_form.site.as_hidden }}
-            {{ site_form.id }}
-            {{ site_form.instance.site.name }}
-            <br />
-        {% endfor %}
-
-        <h3>Help Info</h3>
+        <h3 style="margin-top: 50px;">Volunteer Information</h3>
+        <a id="volunteer">&nbsp;</a>
         {{ help_formset.management_form }}
         {% for help_form in help_formset %}
             {{ help_form.affirmative }}
@@ -61,9 +60,31 @@
             {{ help_form.instance.help_type.description }}
             <br />
         {% endfor %}
+
+        {{ site_formset.management_form }}
+        <input type="checkbox">Visit classes as a guest speaker</input>
+        <br />
+        Which sites could you visit?
+        <ul style="list-style-type: none; margin-left: 30px;">
+        {% for site_form in site_formset %}
+            {{ site_form.site.as_hidden }}
+            {{ site_form.id }}
+            <li>{{ site_form.affirmative }} {{ site_form.instance.site.name }}</li>
+        {% endfor %}
+        <ul>
+        <br />
+
         <input type="submit"/>
     </div>
 
 </form>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        {% if anchor %}
+            location.hash = "#" + {{ anchor }}
+        {% endif %}
+    });
+</script>
 
 {% include "footer.html" %}
