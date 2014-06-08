@@ -1,5 +1,5 @@
 django
-widget_tweaks
+django-widget-tweaks
 django-localflavor
 
 
