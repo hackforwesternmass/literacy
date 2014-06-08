@@ -2,6 +2,7 @@
 {% load currency from tag_extras %}
 {% load bool_yn from tag_extras %}
 {% include "topmatter.html" %}
+{% load widget_tweaks %}
 
 <form method="post" action="" role="form">
     {% csrf_token %}
@@ -52,12 +53,12 @@
 
         <h3 style="margin-top: 50px;">Volunteer Information</h3>
         <a id="volunteer">&nbsp;</a>
-        {{ help_formset.management_form |add_class:"form-control" }}
+        {{ help_formset.management_form }}
         {% for help_form in help_formset %}
             {{ help_form.affirmative |add_class:"form-control" }}
-            {{ help_form.help_type.as_hidden |add_class:"form-control" }}
+            {{ help_form.help_type.as_hidden }}
             {{ help_form.id |add_class:"form-control" }}
-            {{ help_form.instance.help_type.description|add_class:"form-control"  }}
+            {{ help_form.instance.help_type.description }}
             <br />
         {% endfor %}
 
@@ -67,9 +68,9 @@
         Which sites could you visit?
         <ul style="list-style-type: none; margin-left: 30px;">
         {% for site_form in site_formset %}
-            {{ site_form.site.as_hidden|add_class:"form-control"  }}
-            {{ site_form.id |add_class:"form-control" }}
-            <li>{{ site_form.affirmative }} {{ site_form.instance.site.name |add_class:"form-control" }}</li>
+            {{ site_form.site.as_hidden }}
+            {{ site_form.id  }}
+            <li>{{ site_form.affirmative }} {{ site_form.instance.site.name }}</li>
         {% endfor %}
         <ul>
         <br />
