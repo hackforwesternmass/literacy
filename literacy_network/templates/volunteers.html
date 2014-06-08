@@ -6,13 +6,30 @@
     <legend>Volunteers</legend>
 
     <table id="data-table">
+        <tfoot>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Contact</th>
+                <th>Industry</th>
+                <th>Job Title</th>
+                <th>Help Type</th>
+                <th>Visit Site</th>
+                <th>Host Site</th>
+                <th>More</th>
+            </tr>
+        </tfoot>
         <thead>
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Contact Phone</th>
-                <th>Contact Email</th>
-                <th></th>
+                <th>Contact</th>
+                <th>Industry</th>
+                <th>Job Title</th>
+                <th>Help Type</th>
+                <th>Visit Site</th>
+                <th>Host Site</th>
+                <th>More</th>
             </tr>
         </thead>
         <tbody>
@@ -20,23 +37,43 @@
                 <tr>
                     <td>{{ volunteer.first_name }}</td>
                     <td>{{ volunteer.last_name }}</td>
-                    <td>{{ volunteer.phone }}</td>
-                    <td>{{ volunteer.email }}</td>
+                    <td>
+                        {{ volunteer.email }}<br>
+                        {{ volunteer.phone }}<br>
+                        {{ volunteer.address_line1 }}<br>
+                        {{ volunteer.address_line2 }}<br>
+                        {{ volunteer.city }}, {{ volunteer.state }} {{ volunteer.zipcode }}
+                    </td>
+                    <td>
+                        {% for occ in volunteer.occupation_set.all %}
+                            {{ occ.industry }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for occ in volunteer.occupation_set.all %}
+                            {{ occ.job_title }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for help_resp in volunteer.helptyperesponse_set.all %}
+                            {{ help_resp.help_type.short_name }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for site in volunteer.volunteersite_set.all %}
+                            {{ site.name }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for help_resp in volunteer.helptyperesponse_set.all %}
+                            {{ help_resp.help_type.help_text }}<br>
+                        {% endfor %}
+                    </td>
                     <td><a href="{% url 'view-volunteer' volunteer.pk %}">[View]</a></td>
 
                 </tr>
             {% endfor %}
         </tbody>
-        <tfoot>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Contact Phone</th>
-            <th>Contact Email</th>
-            <th></th>
-        </tr>
-
-        </tfoot>
 
     </table>
 </fieldset>

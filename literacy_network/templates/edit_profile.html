@@ -11,9 +11,9 @@
             <a id="contact"></a>
             {{ vol_form.non_field_errors }}
             <label for="id_first_name">First Name</label>
-            {{ vol_form.first_name }}
+            {{ vol_form.first_name|add_class:"form-control"  }}
             <label for="id_last_name">Last Name</label>
-            {{ vol_form.last_name }}
+            {{ vol_form.last_name|add_class:"form-control"  }}
         {% endif %}
 
 
@@ -21,11 +21,11 @@
         <a id="career"></a>
         {{ occ_formset.management_form }}
 
-        What field do you work in?<br />
-        {{ occ_formset.forms.0.industry }}<br />
+        What field do you work in?
+        {{ occ_formset.forms.0.industry |add_class:"form-control" }}<br />
         Job Title
-        {{ occ_formset.forms.0.job_title }}<br />
-        {{ occ_formset.forms.0.id }}
+        {{ occ_formset.forms.0.job_title |add_class:"form-control" }}<br />
+        {{ occ_formset.forms.0.id |add_class:"form-control" }}
         <a id="add-more-occ-link">Add more occupations</a>
         <div id="more-occ-div" style="display: none">
         <table>
@@ -39,10 +39,10 @@
             <tbody>
                 {% for occ_form in occ_formset|slice:"1:" %}
                     <tr>
-                    <td>{{ occ_form.industry }}</td>
-                    <td>{{ occ_form.job_title }}</td>
-                    {{ occ_form.id }}
-                    <td>{{ occ_form.current }}</td>
+                    <td>{{ occ_form.industry|add_class:"form-control"  }}</td>
+                    <td>{{ occ_form.job_title|add_class:"form-control"  }}</td>
+                    {{ occ_form.id|add_class:"form-control"  }}
+                    <td>{{ occ_form.current |add_class:"form-control" }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -52,12 +52,12 @@
 
         <h3 style="margin-top: 50px;">Volunteer Information</h3>
         <a id="volunteer">&nbsp;</a>
-        {{ help_formset.management_form }}
+        {{ help_formset.management_form |add_class:"form-control" }}
         {% for help_form in help_formset %}
-            {{ help_form.affirmative }}
-            {{ help_form.help_type.as_hidden }}
-            {{ help_form.id }}
-            {{ help_form.instance.help_type.description }}
+            {{ help_form.affirmative |add_class:"form-control" }}
+            {{ help_form.help_type.as_hidden |add_class:"form-control" }}
+            {{ help_form.id |add_class:"form-control" }}
+            {{ help_form.instance.help_type.description|add_class:"form-control"  }}
             <br />
         {% endfor %}
 
@@ -67,9 +67,9 @@
         Which sites could you visit?
         <ul style="list-style-type: none; margin-left: 30px;">
         {% for site_form in site_formset %}
-            {{ site_form.site.as_hidden }}
-            {{ site_form.id }}
-            <li>{{ site_form.affirmative }} {{ site_form.instance.site.name }}</li>
+            {{ site_form.site.as_hidden|add_class:"form-control"  }}
+            {{ site_form.id |add_class:"form-control" }}
+            <li>{{ site_form.affirmative }} {{ site_form.instance.site.name |add_class:"form-control" }}</li>
         {% endfor %}
         <ul>
         <br />

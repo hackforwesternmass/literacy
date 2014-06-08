@@ -11,11 +11,11 @@
 <table>
 <tr>
     <td>Email Address</td>
-    <td>{{ form.username }}</td>
+    <td>{{ form.username |add_class:"form-control" }}</td>
 </tr>
 <tr>
     <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
+    <td>{{ form.password|add_class:"form-control"  }}</td>
 </tr>
 </table>
 
