@@ -2,6 +2,7 @@
 {% load tabindex from tag_extras %}
 {% load currency from tag_extras %}
 {% load bool_yn from tag_extras %}
+{% load widget_tweaks %}
 {% include "topmatter.html" %}
 
 <form method="post" action="" role="form">
@@ -12,7 +13,7 @@
         <div class="form-group">
 			<label for="id_first_name">First Name</label>
 			{{ vol_form.first_name.errors }}
-			{{ vol_form.first_name }}
+			{{ vol_form.first_name|add_class:"form-control" }}
 		</div>
 		
 		<div class="form-group">
