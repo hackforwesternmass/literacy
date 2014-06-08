@@ -145,8 +145,8 @@ def view_volunteer(request, volunteer_id):
     volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
     if not volunteer.is_public and not \
         (request.user.is_authenticated and 
-            (request.user.pk == volunteer.user.pk or 
-                request.user.is_superuser or request.user.is_staff)):
+            (request.user.is_superuser or request.user.is_staff
+                (volunteer.user and request.user.pk == volunteer.user.pk))):
         raise PermissionDenied()
     return render(request, "view-volunteer.html", {"volunteer" : volunteer})
     
