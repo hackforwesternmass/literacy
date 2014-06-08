@@ -76,7 +76,7 @@ def create_volunteer(request, volunteer_id=None):
 @login_required
 def edit_volunteer_profile(request, volunteer_id, hide_contact_form=False):
     volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
-    if request.user.pk != volunteer.user.pk and not request.user.is_superuser:
+    if (volunteer.user and request.user.pk != volunteer.user.pk) and not request.user.is_superuser:
         raise PermissionDenied()
 
     # make sure there is a record for each volunteer help type
