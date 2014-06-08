@@ -15,7 +15,7 @@
                 <th>Job Title</th>
                 <th>Help Type</th>
                 <th>Visit Site</th>
-                <th>Host Site</th>
+                <!--<th>Host Site</th>-->
             </tr>
         </thead>
         <tbody>
@@ -31,7 +31,6 @@
                     </td>
                     <td>
                         {% for occ in volunteer.occupation_set.all %}
-                            yellow
                             {{ occ.industry }}<br>
                         {% endfor %}
                     </td>
@@ -42,19 +41,24 @@
                     </td>
                     <td>
                         {% for help_resp in volunteer.helptyperesponse_set.all %}
-                            {{ help_resp.help_type.short_name }}<br>
+                            {{ help_resp.help_type.short_name }}
+                            {% if help_resp.help_type.has_details %}
+                                {{ help_resp.details }}
+                            {% endif %}
+                            <br>
                         {% endfor %}
                     </td>
                     <td>
                         {% for site in volunteer.volunteersite_set.all %}
+                            {{ site.site.name }}
                             {{ site.name }}<br>
                         {% endfor %}
                     </td>
-                    <td>
+                    <!--<td>
                         {% for help_resp in volunteer.helptyperesponse_set.all %}
                             {{ help_resp.details }}<br>
                         {% endfor %}
-                    </td>
+                    </td>-->
 
                 </tr>
             {% endfor %}
@@ -68,7 +72,7 @@
                 <th>Job Title</th>
                 <th>Help Type</th>
                 <th>Visit Site</th>
-                <th>Host Site</th>
+                <!--<th>Host Site</th>-->
             </tr>
         </tfoot>
 
