@@ -58,6 +58,9 @@ class VolunteerSite(models.Model):
     # indicates if the volunteer is willing to go to the site
     affirmative = models.BooleanField()
 
+    def __unicode__(self):
+        return unicode(self.site.name)
+
 class HelpType(models.Model):
     """ A type of participation that a volunteer is willing to """
     short_name = models.CharField(max_length=10)
