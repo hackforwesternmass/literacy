@@ -26,32 +26,17 @@ $(document).ready(function() {
             }
         });
 
-        $('#data-table tfoot th').each( function (i) {
-            var title = $('#data-table thead th').eq( $(this).index() ).text();
-        /*if (title==="Industry"||title==="Help Type"||title==="Visit Site") {
-            var select = $('<select><option value=""></option></select>')
-            .appendTo( $(this).empty() )
-            .on( 'change', function () {
-                table.column( i )
-                .search( this.value )
-                .draw();
-            } );
-
-            table.column( i ).data().unique().sort().each( function ( d, j ) {
-                select.append( '<option value="'+d+'">'+d+'</option>' )
-            } );
-        } else {
-            */
-            $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+        $('#data-table #filters th').each( function (i) {
+            var title = $('#data-table #titles th').eq( $(this).index() ).text();
+            $(this).html( '<input type="text" placeholder="Filter" />' );
             table.columns().eq( 0 ).each( function ( colIdx ) {
-                $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
+                $( '#filters input'/*, table.column( colIdx ).footer()*/ ).on( 'keyup change', function () {
                     table
                     .column( colIdx )
                     .search( this.value )
                     .draw();
                 } );
             } );
-        //}
     } );
 
 }
