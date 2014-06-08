@@ -3,7 +3,7 @@ $(document).ready(function() {
         customExportTitle = document.title;
     }
 
-    $("select, input[type=text], input[type=checkbox], password").uniform();
+    $("input[type=text], input[type=checkbox], password").uniform();
 
     if($("#data-table").length) {
 
