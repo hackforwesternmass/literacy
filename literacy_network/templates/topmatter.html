@@ -20,20 +20,47 @@
     <link rel="stylesheet" type="text/css" href="/static/css/uniform.default.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/overcast/jquery-ui-1.10.3.custom.min.css"/>
 	
+	<style>
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		li {
+			float: right;
+		}
+
+		a:link, a:visited {
+			font: Futura-pt-condensed;
+			font-weight: bold;
+			color: #FFFFFF;
+			padding: 10px;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+
+		a:hover, a:active {
+			background-color: #4B264E;
+		}
+	</style>
 </head>
 <body>
 <div id="page-wrap">
     <div id="inside">
         <div id="header">
             <a href="/"><img src="/static/images/logo2.png" width=150/></a>
-			<ul id="nav-bar">
+			<div id="nav-bar">
+				<ul>
 				  <li><a href="#donate">Donate</a></li>
 				  <li><a href="#volunteer">Volunteer</a></li>
 				  <li><a href="#news">News</a></li>
 				  <li><a href="#about">About Us</a></li>
 				  <li><a href="#enroll">Enroll</a></li>
 				  <li><a href="#home">Home</a></li>
-			</ul>
+				</ul>
+			</div>
         </div>
 
         <div id="login-box" style="text-align: right;">
