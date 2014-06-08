@@ -13,9 +13,10 @@
                 <th>Contact</th>
                 <th>Industry</th>
                 <th>Job Title</th>
-                <th>Phone?</th>
-                <th>Visit?</th>
-                <th>Host?</th>
+                <th>Help Type</th>
+                <th>Visit Site</th>
+                <th>Host Site</th>
+                <th>More</th>
             </tr>
         </tfoot>
         <thead>
@@ -25,9 +26,10 @@
                 <th>Contact</th>
                 <th>Industry</th>
                 <th>Job Title</th>
-                <th>Phone?</th>
-                <th>Visit?</th>
-                <th>Host?</th>
+                <th>Help Type</th>
+                <th>Visit Site</th>
+                <th>Host Site</th>
+                <th>More</th>
             </tr>
         </thead>
         <tbody>
@@ -40,11 +42,33 @@
                         {{ volunteer.phone }}<br>
                         {{ volunteer.address_line1 }}<br>
                         {{ volunteer.address_line2 }}<br>
-                        {{ volunteer.city }}, {{ volunteer.state }} {{ volunteer.zipcode }}<br>
-                        {{ volunteer.helptyperesponse_set.all }}
+                        {{ volunteer.city }}, {{ volunteer.state }} {{ volunteer.zipcode }}
                     </td>
-                    <td>{{ volunteer.phone }}</td>
-                    <td>{{ volunteer.email }}</td>
+                    <td>
+                        {% for occ in volunteer.occupation_set.all %}
+                            {{ occ.industry }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for occ in volunteer.occupation_set.all %}
+                            {{ occ.job_title }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for help_resp in volunteer.helptyperesponse_set.all %}
+                            {{ help_resp.help_type.short_name }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for site in volunteer.volunteersite_set.all %}
+                            {{ site.name }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for host_site in volunteer.helptyperesponse_set.all %}
+                            {{ site.name }}<br>
+                        {% endfor %}
+                    </td>
                     <td><a href="{% url 'view-volunteer' volunteer.pk %}">[View]</a></td>
 
                 </tr>
