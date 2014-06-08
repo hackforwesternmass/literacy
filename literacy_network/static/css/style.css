@@ -136,6 +136,7 @@ a.round-button {
 	
 #header {
     background: #D5E3C8;
+	opacity: 0.85;
     height: 104px;
     font-family: "futura-pt-condensed";
 }
