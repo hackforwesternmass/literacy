@@ -9,6 +9,7 @@ from literacy_network.models import *
 from literacy_network.forms import *
 from django.core.exceptions import PermissionDenied
 import csv, sys, os
+from django.contrib.auth import authenticate, login
 
 def home_redirect(request):
     """ Redirects the user to a registration form or volunteer list 
@@ -59,6 +60,8 @@ def create_volunteer(request, volunteer_id=None):
             # associate the user with the volunteer
             svol.user = user
             svol.save()
+            user = authenticate(username=user.username, password=user_form.clean_password2())
+            login(request, user)
 
             return redirect("edit-volunteer-profile", 
                 volunteer_id=svol.id, hide_contact_form=True)
