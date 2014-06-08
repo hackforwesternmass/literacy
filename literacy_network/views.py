@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from django.db import DatabaseError
 from django.utils import simplejson
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from literacy_network.models import *
 from literacy_network.forms import *
 import csv, sys, os
@@ -87,7 +87,16 @@ def edit_volunteer_profile(request, volunteer_id):
         "site_formset" : site_formset
     })
 
-@login_required
+def view_volunteer(request, volunteer_id):
+    """ Opens a page for staff members or the public 
+        (if the profile is public-enabled) to view a volunteer
+    """
+    # TODO: check if volunteer is public. if not, and user is not staff, deny request
+    volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
+    return render(request, "view-volunteer.html", {"volunteer" : volunteer})
+    
+
+@user_passes_test(lambda u: u.is_staff)
 def volunteers(request):
     """ Presents a list of volunteers """
     volunteers = Volunteer.objects.all()
@@ -95,7 +104,6 @@ def volunteers(request):
             {"volunteers" : volunteers})
 
     return render(request, 'edit-volunteer.html',
-
         {"form" : form})
 
 def upload_industries(request):
