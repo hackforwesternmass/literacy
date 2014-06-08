@@ -95,7 +95,7 @@ def edit_volunteer_profile(request, volunteer_id, hide_contact_form=False):
                             site=site, affirmative=False)
 
     if request.method == 'POST':
-        vol_form = VolunteerForm(request.POST)
+        vol_form = VolunteerForm(request.POST, instance=volunteer)
         user_form = UserEditForm(request.POST, instance=request.user)
         occ_formset = OccupationFormset(request.POST, 
             prefix="occ", instance=volunteer)
