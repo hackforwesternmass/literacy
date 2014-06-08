@@ -20,7 +20,6 @@ class Volunteer(models.Model):
     first_name = models.CharField(max_length=200, verbose_name = 'volunteer\'s first name')
     last_name = models.CharField(max_length=200, verbose_name = 'volunteer\'s last name')
     phone = models.CharField(max_length=12, verbose_name = 'volunteer\'s phone number')
-    email = models.CharField(max_length=30, null=True, blank=True, verbose_name = 'volunteer\'s email address')
 
     address_line1 = models.CharField(max_length=100, null=True, blank=True)
     address_line2 = models.CharField(max_length=100, null=True, blank=True)
@@ -55,8 +54,10 @@ class VolunteerSite(models.Model):
 
 class HelpType(models.Model):
     """ A type of participation that a volunteer is willing to """
+    short_name = models.CharField(max_length=10)
     description = models.CharField(max_length=150)
     has_details = models.BooleanField()
+    help_text = models.CharField(max_length=500)
 
 class HelpTypeResponse(models.Model):
     volunteer = models.ForeignKey(Volunteer)

@@ -140,6 +140,29 @@ a.round-button {
     height: 104px;
     font-family: futura-pt-condensed;
 }
+
+#header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#header li {
+    float: left;
+}
+
+#header a:link, a:visited {
+    font-weight: bold;
+    color: #FFFFFF;
+    padding: 35px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#header a:hover, a:active {
+    background-color: #4B264E;
+}
 /*#nav-bar{
 		ul {
 			list-style-type: none;

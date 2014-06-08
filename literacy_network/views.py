@@ -4,10 +4,28 @@ from datetime import datetime, timedelta
 from django.db import DatabaseError
 from django.utils import simplejson
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from literacy_network.models import *
 from literacy_network.forms import *
 import csv, sys, os
+
+def home_redirect(request):
+    """ Redirects the user to a registration form or volunteer list 
+        depending on their account role 
+    """
+    if request.user.is_authenticated() and request.user.is_staff:
+        return redirect("volunteers")
+    elif request.user.is_authenticated() and not request.user.is_superuser:
+        related_volunteer = get_object_or_404(Volunteer, user_id=request.user.pk)
+        return redirect("edit-volunteer-profile", volunteer_id=related_volunteer.pk)
+    else:
+        return redirect("new-volunteer")
+
+def logged_out(request):
+    """ Renders a page notifying the user that they have logged out
+        and points them back to the organization's main site
+    """
+    return render(request, "logged-out.html")
 
 def edit_volunteer(request, volunteer_id=None):
     """ Presents a view used to edit a volunteer
@@ -18,7 +36,6 @@ def edit_volunteer(request, volunteer_id=None):
         Returns a view used to edit the volunteer on GET,
             or a redirection to the volunteer list on POST
     """
-    print("Volunteer with id {0} requested".format(volunteer_id))
     volunteer = None
     try:
         volunteer = Volunteer.objects.get(id=volunteer_id)
@@ -38,7 +55,12 @@ def edit_volunteer(request, volunteer_id=None):
             svol = vol_form.save()
             user = user_form.save()
 
-            return redirect("/volunteers/profile/" + str(svol.id)) # shameless hack
+            # associate the user with the volunteer
+            svol.user = user
+            svol.save()
+
+            return redirect("edit-volunteer-profile", 
+                volunteer_id=svol.id, hide_contact_form=True)
     elif volunteer_id:
         vol_form = VolunteerForm(instance=volunteer)
         if user:
@@ -46,8 +68,8 @@ def edit_volunteer(request, volunteer_id=None):
 
     return render(request, 'edit-volunteer.html', 
         {"vol_form" : vol_form, "user_form" : user_form })
-
-def edit_volunteer_profile(request, volunteer_id):
+         
+def edit_volunteer_profile(request, volunteer_id, hide_contact_form=False):
     volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
     data = {}
 
@@ -67,27 +89,41 @@ def edit_volunteer_profile(request, volunteer_id):
                             site=site, affirmative=False)
 
     if request.method == 'POST':
+        vol_form = VolunteerForm(request.POST, instance=volunteer)
         occ_formset = OccupationFormset(request.POST, instance=volunteer)
         help_formset = HelpResponseFormset(request.POST, instance=volunteer)
         site_formset = SiteFormset(request.POST, instance=volunteer)
 
         if occ_formset.is_valid() and help_formset.is_valid() \
-                    and site_formset.is_valid():
+                    and site_formset.is_valid() and vol_form.is_valid():
+            vol_form.save()
             occ_formset.save()
             help_formset.save()
             site_formset.save()
     else:
+        vol_form = VolunteerForm(request.POST, instance=volunteer)
         occ_formset = OccupationFormset(instance=volunteer)
         help_formset = HelpResponseFormset(instance=volunteer)
         site_formset = SiteFormset(instance=volunteer)
 
     return render(request, 'edit_profile.html', {
+        "vol_form" : vol_form,
         'occ_formset' : occ_formset,
         'help_formset' : help_formset,
-        "site_formset" : site_formset
+        "site_formset" : site_formset,
+        "anchor" : None,
+        "hide_contact_form" : hide_contact_form
     })
 
-@login_required
+def view_volunteer(request, volunteer_id):
+    """ Opens a page for staff members or the public 
+        (if the profile is public-enabled) to view a volunteer
+    """
+    # TODO: check if volunteer is public. if not, and user is not staff, deny request
+    volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
+    return render(request, "view-volunteer.html", {"volunteer" : volunteer})
+    
+@user_passes_test(lambda u: u.is_staff)
 def volunteers(request):
     """ Presents a list of volunteers """
     volunteers = Volunteer.objects.all()
@@ -95,7 +131,6 @@ def volunteers(request):
             {"volunteers" : volunteers})
 
     return render(request, 'edit-volunteer.html',
-
         {"form" : form})
 
 def upload_industries(request):

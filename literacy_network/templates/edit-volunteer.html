@@ -22,9 +22,30 @@
 		</div>
 		
 		<div class="form-group">
-        <label for="id_phone">Contact Phone</label>
+			<label for="id_phone">Contact Phone</label>
 			{{ vol_form.phone.errors }}
 			{{ vol_form.phone }}
+		</div>
+		
+		<div class="form-group">
+			<label for="id_address_line1">Address</label>
+			{{ vol_form.address_line1 }}
+			{{ vol_form.address_line2 }}
+		</div>
+		
+		<div class="form-group">
+			<label for="id_city">City</label>
+			{{ vol_form.city }}
+		</div>
+		
+		<div class="form-group">
+			<label for="id_state">State</label>
+			{{ vol_form.state }}
+		</div>
+		
+		<div class="form-group">
+        <label for="id_zipcode">Zip</label>
+			{{ vol_form.zipcode }}
 
 			{{ user_form.non_field_errors }}
 
@@ -34,6 +55,7 @@
 		<div class="form-group">
 			<label for="id_username">Contact Email</label>
 			{{ user_form.username }}
+
 		
 			{{ user_form.password1.errors }}
 		</div>
@@ -41,6 +63,7 @@
 		<div class="form-group">
 			<label for="id_username">Password</label>
 			{{ user_form.password1 }}
+
 			{{ user_form.password2.errors }}
 		</div>
 		
@@ -48,7 +71,7 @@
 			<label for="id_username">Confirm Password</label>
 			{{ user_form.password2 }}
 		</div>
-		
+
         <input type="submit" value="Next" />
     </div>
 

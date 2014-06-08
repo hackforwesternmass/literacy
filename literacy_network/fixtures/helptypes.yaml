@@ -1,0 +1,13 @@
+-   model: literacy_network.HelpType
+    fields:
+        short_name: Phone
+        description: "Talk on the phone with students interested in my field"
+        has_details: False
+        help_text: "An unstructured phone interview, usually around 15 minutes.  We will call you to set up a time for a phone convesation with a student.  The Literacy Project needs your phone number, but it is not necessary for the student to see your phone number; <strong>please specify in Additional Notes</strong> if you do not want the <strong>student</strong> to see your phone number."
+
+-   model: literacy_network.HelpType
+    fields:
+        short_name: Workplace
+        description: "Host a visit to my workplace"
+        has_details: False
+        help_text: "<em>Please note in Additional Notes</em> if your workplace already offers tours that we can utilize.  Otherwise, we are asking for volunteers to host around 15 students for a tour of their workplace, usually no longer than an hour."

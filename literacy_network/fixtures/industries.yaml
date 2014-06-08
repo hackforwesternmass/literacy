@@ -1,0 +1,96 @@
+
+- model: literacy_network.Industry
+  fields:
+    name: Agriculture, Food, and Natural Resources
+    code: 001
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Architecture and Construction
+    code: 002
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Arts, Audio/Visual Technology, and Communications
+    code: 003
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Business Management and Administration
+    code: 004
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Education and Training
+    code: 005
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Finance
+    code: 006
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Government and Public Administration
+    code: 007
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Health Science
+    code: 008
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Hospitality and Tourism
+    code: 009
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Human Services
+    code: 010
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Information Technology
+    code: 011
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Law, Public Safety, Corrections, and Security
+    code: 012
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Manufacturing
+    code: 013
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Marketing
+    code: 014
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Science, Technology, Engineering, and Mathematics
+    code: 015
+
+
+- model: literacy_network.Industry
+  fields:
+    name: Transportation, Distribution, and Logistics
+    code: 016
+
