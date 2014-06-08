@@ -135,7 +135,8 @@ def edit_volunteer_profile(request, volunteer_id, hide_contact_form=False):
         'help_formset' : help_formset,
         "site_formset" : site_formset,
         "anchor" : None,
-        "hide_contact_form" : hide_contact_form
+        "hide_contact_form" : hide_contact_form,
+        "willvisit" : volunteer.volunteersite_set.filter(affirmative=True).count() > 0
     })
 
 def view_volunteer(request, volunteer_id):

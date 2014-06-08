@@ -113,7 +113,7 @@
         });
 
         var viewModel = {
-            willvisit: ko.observable(false) // Message initially visible
+            willvisit: ko.observable({{willvisit|yesno:"true,false"}})
         };
         viewModel.willvisit.subscribe(function(oldValue) {
             if(!oldValue) {
@@ -122,11 +122,6 @@
         }, null, "beforeChange");
         ko.applyBindings(viewModel);
     });
-
-
-
-
-
 
 </script>
 
