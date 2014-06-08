@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^volunteers/profile/(?P<volunteer_id>\d{1,10})/(?P<hide_contact_form>True|False)?$', 
         'literacy_network.views.edit_volunteer_profile', name='edit-volunteer-profile'),
     url(r'^upload-industries$', 'literacy_network.views.upload_industries', name='industries'),
+    url(r'^thanks$', 'literacy_network.views.thanks', name='thanks'),
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', name="auth_login"),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {"next_page" : "/logged-out"}, name="auth_logout"),

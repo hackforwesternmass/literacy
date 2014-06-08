@@ -106,19 +106,20 @@ def edit_volunteer_profile(request, volunteer_id, hide_contact_form=False):
             occ_formset.save()
             help_formset.save()
             site_formset.save()
+        return render(request, 'thanks.html')
     else:
         vol_form = VolunteerForm(instance=volunteer)
         occ_formset = OccupationFormset(instance=volunteer)
         help_formset = HelpResponseFormset(instance=volunteer)
         site_formset = SiteFormset(instance=volunteer)
 
-    return render(request, 'edit_profile.html', {
-        "vol_form" : vol_form,
-        'occ_formset' : occ_formset,
-        'help_formset' : help_formset,
-        "site_formset" : site_formset,
-        "anchor" : None,
-        "hide_contact_form" : hide_contact_form
+        return render(request, 'edit_profile.html', {
+            "vol_form" : vol_form,
+            'occ_formset' : occ_formset,
+            'help_formset' : help_formset,
+            "site_formset" : site_formset,
+            "anchor" : None,
+            "hide_contact_form" : hide_contact_form
     })
 
 def view_volunteer(request, volunteer_id):
@@ -156,3 +157,6 @@ def upload_industries(request):
         return render(request, "upload-industries.html")
 
     return redirect("/")
+
+def thanks(request):
+    return render(request, "thanks.html")
