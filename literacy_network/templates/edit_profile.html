@@ -21,14 +21,12 @@
         <a id="career"></a>
         {{ occ_formset.management_form }}
 
-        What field do you work in?
+        What field do you work in?<br />
         {{ occ_formset.forms.0.industry }}<br />
         Job Title
         {{ occ_formset.forms.0.job_title }}<br />
         {{ occ_formset.forms.0.id }}
-        <!-- TODO: when this link is clicked show the div (jQuery). alternately, 
-            if this is an edit, maybe just render all occupations  -->
-        <a href="add-more" id="add-more-occ-link">Add more occupations</a>
+        <a id="add-more-occ-link">Add more occupations</a>
         <div id="more-occ-div" style="display: none">
         <table>
             <thead>
@@ -86,6 +84,12 @@
         {% if anchor %}
             location.hash = "#" + {{ anchor }}
         {% endif %}
+        
+        $("#add-more-occ-link").click(function(e) {
+            e.preventDefault();
+            $("#more-occ-div").show();
+            $("#add-more-occ-link").hide();
+        });
     });
 </script>
 

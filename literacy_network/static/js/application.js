@@ -29,13 +29,15 @@ $(document).ready(function() {
         }
     });
 
-    table.columns().eq( 0 ).each( function ( colIdx ) {
-        $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
-            table
-            .column( colIdx )
-            .search( this.value )
-            .draw();
+    if($(table).length) {
+        table.columns().eq( 0 ).each( function ( colIdx ) {
+            $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
+                table
+                .column( colIdx )
+                .search( this.value )
+                .draw();
+            } );
         } );
-    } );
+    }
 
 });
