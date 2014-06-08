@@ -67,8 +67,8 @@ class HelpType(models.Model):
 
 class HelpTypeResponse(models.Model):
     volunteer = models.ForeignKey(Volunteer)
-    affirmative = models.BooleanField()
+    affirmative = models.BooleanField(default=False)
     help_type = models.ForeignKey(HelpType)
-    details = models.TextField()
+    details = models.TextField(null=True, blank=True)
 
 
