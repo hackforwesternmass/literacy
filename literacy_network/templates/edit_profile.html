@@ -10,6 +10,8 @@
     <form method="post" action="" role="form" class="col-md-6 col-md-offset-2">
         {% csrf_token %}
         {{ occ_formset.management_form }}
+        {{ site_formset.management_form }}
+        {{ help_formset.management_form }}
 
         <div style="display: {{hide_contact_form|yesno:'none, block'}}">
             <h3>Contact Information</h3>
@@ -18,7 +20,7 @@
 
         <h3>Career Information</h3>
 
-        <table class="table">
+        <table class="table-responsive">
             <thead>
             <tr>
                 <th>What fields did or do you work in?</th>
@@ -63,7 +65,6 @@
 
         <p>How would you like to volunteer?</p>
 
-        {{ help_formset.management_form }}
         {% for help_form in help_formset %}
         {{ help_form.affirmative |add_class:"form-control" }}
         {{ help_form.help_type.as_hidden }}
@@ -71,15 +72,16 @@
         {{ help_form.instance.help_type.description }}
         {% endfor %}
 
-        {{ site_formset.management_form }}
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" data-bind="checked: willvisit"> Visit classes as a guest speaker
-            </label>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-bind="checked: willvisit"/> Visit classes as a guest speaker
+                </label>
+            </div>
         </div>
-
-        <div style="margin: 10px" data-bind="visible: willvisit">
-            Which sites could you visit?
+        
+        <div style="padding-left: 3em;" data-bind="visible: willvisit">
+            <p>Which sites could you visit?</p>
             <ul style="list-style-type: none; margin-left: 30px;">
                 {% for site_form in site_formset %}
                 {{ site_form.site.as_hidden }}
@@ -114,6 +116,7 @@
         }, null, "beforeChange");
         ko.applyBindings(viewModel);
     });
+
 
 
 
