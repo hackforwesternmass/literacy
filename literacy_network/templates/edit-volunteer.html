@@ -4,75 +4,14 @@
 {% load widget_tweaks %}
 {% include "topmatter.html" %}
 
-<form method="post" action="" role="form" class="col-md-4 col-md-offset-2">
-    {{ vol_form.non_field_errors }}
-    {% csrf_token %}
+<div id="row">
 
-    <div class="form-group">
-        <label for="id_first_name">First Name</label>
-        {{ vol_form.first_name.errors }}
-        {{ vol_form.first_name|add_class:"form-control"|attr:"style:width:20em;" }}
-    </div>
-
-    <div class="form-group">
-        <label for="id_last_name">Last Name</label>
-        {{ vol_form.last_name.errors }}
-        {{ vol_form.last_name|add_class:"form-control"|attr:"style:width:20em;" }}
-    </div>
-
-    <div class="form-group">
-        <label for="id_phone">Contact Phone</label>
-        {{ vol_form.phone.errors }}
-        {{ vol_form.phone|add_class:"form-control" }}
-    </div>
-
-    <div class="form-group">
-        <label for="id_address_line1">Address</label>
-        {{ vol_form.address_line1|add_class:"form-control" }}
-    </div>
-
-    <div class="form-group">
-        {{ vol_form.address_line2|add_class:"form-control" }}
-    </div>
-
-    <div class="form-group">
-        <label for="id_city">City</label>
-        {{ vol_form.city|add_class:"form-control"}}
-    </div>
-
-    <div class="form-group">
-        <label for="id_state">State</label><br/>
-        {% render_field vol_form.state type="select" class="form-control" %}
-    </div>
-
-    <div class="form-group">
-        <label for="id_zipcode">Zip</label>
-        {{ vol_form.zipcode|add_class:"form-control"|attr:"style:width:8em;" }}
-    </div>
-
-
-    {{ user_form.username.errors }}
-
-    <div class="form-group">
-        <label for="id_username">Contact Email</label>
-        {{ user_form.username|add_class:"form-control" }}
-
-        {{ user_form.password1.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="id_username">Password</label>
-        {{ user_form.password1|add_class:"form-control" }}
-        {{ user_form.password2.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="id_username">Confirm Password</label>
-        {{ user_form.password2 |add_class:"form-control"}}
-    </div>
-
-    <button class="btn btn-primary" type="submit">Next</button>
-
-</form>
-
+    <form method="post" action="" role="form" class="col-md-6 col-md-offset-2">
+        <h3>Contact Information</h3>
+        {{ vol_form.non_field_errors }}
+        {% csrf_token %}
+        {% include "contact-form.html" %}
+        <button class="btn btn-primary col-md-offset-2" type="submit">Next</button>
+    </form>
+</div>
 {% include "footer.html" %}
