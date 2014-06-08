@@ -9,22 +9,38 @@
     <div class="right">
         <h3>Career Info</h3>
         {{ occ_formset.management_form }}
+
+        What field do you work in?
+        {{ occ_formset.forms.0.industry }}<br />
+        Job Title
+        {{ occ_formset.forms.0.job_title }}<br />
+        {{ occ_formset.forms.0.id }}
+        <!-- TODO: when this link is clicked show the div (jQuery). alternately, 
+            if this is an edit, maybe just render all occupations  -->
+        <a href="add-more" id="add-more-occ-link">Add more occupations</a>
+        <div id="more-occ-div" style="display: none">
         <table>
             <thead>
                 <tr>
                     <th>Industry</th>
                     <th>Job Title</th>
+                    <th>Do you currently work here?</th>
                 </tr>
             </thead>
             <tbody>
-                {% for form in occ_formset.forms %}
-                <tr>
-                    <td>{{form.industry}}</td>
-                    <td>{{form.job_title}}</td>
-                </tr>
+                {% for occ_form in occ_formset|slice:"1:" %}
+                    <tr>
+                    <td>{{ occ_form.industry }}</td>
+                    <td>{{ occ_form.job_title }}</td>
+                    {{ occ_form.id }}
+                    <td>{{ occ_form.current }}</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
+        </div>
+
+        
 
         <h3>Locations</h3>
         {{ site_formset.management_form }}
