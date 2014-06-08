@@ -65,8 +65,8 @@
                         {% endfor %}
                     </td>
                     <td>
-                        {% for host_site in volunteer.helptyperesponse_set.all %}
-                            {{ site.name }}<br>
+                        {% for help_resp in volunteer.helptyperesponse_set.all %}
+                            {{ help_resp.help_type.help_text }}<br>
                         {% endfor %}
                     </td>
                     <td><a href="{% url 'view-volunteer' volunteer.pk %}">[View]</a></td>
