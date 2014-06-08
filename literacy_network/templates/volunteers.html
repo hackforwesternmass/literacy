@@ -38,7 +38,7 @@
                     <td>{{ volunteer.first_name }}</td>
                     <td>{{ volunteer.last_name }}</td>
                     <td>
-                        {{ volunteer.email }}<br>
+                        {{ volunteer.user.email }}<br>
                         {{ volunteer.phone }}<br>
                         {{ volunteer.address_line1 }}<br>
                         {{ volunteer.address_line2 }}<br>
@@ -46,6 +46,7 @@
                     </td>
                     <td>
                         {% for occ in volunteer.occupation_set.all %}
+                            yellow
                             {{ occ.industry }}<br>
                         {% endfor %}
                     </td>
