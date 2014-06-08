@@ -9,6 +9,7 @@ from literacy_network.models import *
 from literacy_network.forms import *
 from django.core.exceptions import PermissionDenied
 import csv, sys, os
+from django.contrib.auth import authenticate, login
 
 def home_redirect(request):
     """ Redirects the user to a registration form or volunteer list 
@@ -59,6 +60,8 @@ def create_volunteer(request, volunteer_id=None):
             # associate the user with the volunteer
             svol.user = user
             svol.save()
+            user = authenticate(username=user.username, password=user_form.clean_password2())
+            login(request, user)
 
             return redirect("edit-volunteer-profile", 
                 volunteer_id=svol.id, hide_contact_form=True)
@@ -122,9 +125,11 @@ def view_volunteer(request, volunteer_id):
     """ Opens a page for staff members or the public 
         (if the profile is public-enabled) to view a volunteer
     """
-    # TODO: check if volunteer is public. if not, and user is not staff, deny request
     volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
-    if not volunteer.is_public:
+    if not volunteer.is_public and not \
+        (request.user.is_authenticated and 
+            (request.user.pk == volunteer.user.pk or 
+                request.user.is_superuser or request.user.is_staff)):
         raise PermissionDenied()
     return render(request, "view-volunteer.html", {"volunteer" : volunteer})
     
