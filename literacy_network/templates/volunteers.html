@@ -1,85 +1,85 @@
-
 {% load tag_extras %}
 {% include "topmatter.html" %}
 
-<fieldset>
-    <legend>Volunteers</legend>
+<div class="row">
+    <h3 class="col-md-12">Volunteers</h3>
 
-    <table id="data-table">
-        
+    <table id="data-table" class="col-md-12">
+
         <thead id="titles">
-            <tr>
-                <th>Name</th>
-                <th>Contact</th>
-                <th>Industry</th>
-                <th>Job Title</th>
-                <th>Help Type</th>
-                <th>Visit Site</th>
-                <!--<th>Host Site</th>-->
-            </tr>
+        <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Industry</th>
+            <th>Job Title</th>
+            <th>Help Type</th>
+            <th>Visit Site</th>
+        </tr>
         </thead>
 
         <tfoot id="filters">
-            <tr>
-                <th>Name</th>
-                <th>Contact</th>
-                <th>Industry</th>
-                <th>Job Title</th>
-                <th>Help Type</th>
-                <th>Visit Site</th>
-                <!--<th>Host Site</th>-->
-            </tr>
+        <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Industry</th>
+            <th>Job Title</th>
+            <th>Help Type</th>
+            <th>Visit Site</th>
+        </tr>
         </tfoot>
 
         <tbody>
-            {% for volunteer in volunteers %}
-                <tr>
-                    <td><a href="{% url 'view-volunteer' volunteer.pk %}">{{ volunteer.last_name }}, {{ volunteer.first_name }}</a></td>
-                    <td>
-                        {{ volunteer.user.username }}<br>
-                        {{ volunteer.phone }}<br>
-                        {{ volunteer.address_line1 }}<br>
-                        {{ volunteer.address_line2 }}<br>
-                        {{ volunteer.city }}, {{ volunteer.state }} {{ volunteer.zipcode }}
-                    </td>
-                    <td>
-                        {% for occ in volunteer.occupation_set.all %}
-                            {{ occ.industry }}<br>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {% for occ in volunteer.occupation_set.all %}
-                            {{ occ.job_title }}<br>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {% for help_resp in volunteer.helptyperesponse_set.all %}
-                            {{ help_resp.help_type.short_name }}
-                            {% if help_resp.help_type.has_details %}
-                                {{ help_resp.details }}
-                            {% endif %}
-                            <br>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {% for site in volunteer.volunteersite_set.all %}
-                            {{ site.site.name }}
-                            {{ site.name }}<br>
-                        {% endfor %}
-                    </td>
-                    <!--<td>
-                        {% for help_resp in volunteer.helptyperesponse_set.all %}
-                            {{ help_resp.details }}<br>
-                        {% endfor %}
-                    </td>-->
+        {% for volunteer in volunteers %}
+        <tr>
+            <td>
+                <a href="{% url 'view-volunteer' volunteer.pk %}">
+                    {{ volunteer.last_name }}, {{ volunteer.first_name }}
+                </a>
+            </td>
+            <td>
+                {{ volunteer.user.username }}<br>
+                {{ volunteer.phone }}<br>
+                {{ volunteer.address_line1 }}<br>
+                {{ volunteer.address_line2 }}<br>
+                {{ volunteer.city }}, {{ volunteer.state }} {{ volunteer.zipcode }}
+            </td>
+            <td>
+                {% for occ in volunteer.occupation_set.all %}
+                {{ occ.industry }}<br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for occ in volunteer.occupation_set.all %}
+                {{ occ.job_title }}<br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for help_resp in volunteer.helptyperesponse_set.all %}
+                {{ help_resp.help_type.short_name }}
+                {% if help_resp.help_type.has_details %}
+                {{ help_resp.details }}
+                {% endif %}
+                <br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for site in volunteer.volunteersite_set.all %}
+                {{ site.site.name }}
+                {{ site.name }}<br>
+                {% endfor %}
+            </td>
+            <!--<td>
+                {% for help_resp in volunteer.helptyperesponse_set.all %}
+                    {{ help_resp.details }}<br>
+                {% endfor %}
+            </td>-->
 
-                </tr>
-            {% endfor %}
+        </tr>
+        {% endfor %}
         </tbody>
 
     </table>
-</fieldset>
-
+</div>
 
 {% include "footer.html" %}
 
