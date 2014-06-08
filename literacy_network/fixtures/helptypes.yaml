@@ -1,0 +1,6 @@
+-   model: literacy_network.HelpType
+    fields:
+        short_name: Phone
+        description: "Talk on the phone with students interested in my field"
+        has_details: False
+        help_text: "Longer description of what this is..."
