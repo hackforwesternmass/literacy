@@ -11,15 +11,17 @@
     <div class="right">
 
         <div class="form-group">
-			<label for="id_first_name">First Name</label>
-			{{ vol_form.first_name.errors }}
-			{{ vol_form.first_name|add_class:"form-control" }}
-		</div>
-		
-		<div class="form-group">
-			<label for="id_last_name">Last Name</label>
-			{{ vol_form.last_name.errors }}
-			{{ vol_form.last_name|add_class:"form-control"  }}
+            <div class="form-group" style="display: inline-block">
+                <label for="id_first_name">First Name</label>
+                {{ vol_form.first_name.errors }}
+                {{ vol_form.first_name|add_class:"form-control" }}
+            </div>
+
+            <div class="form-group" style="display: inline-block">
+                <label for="id_last_name">Last Name</label>
+                {{ vol_form.last_name.errors }}
+                {{ vol_form.last_name|add_class:"form-control"  }}
+            </div>
 		</div>
 		
 		<div class="form-group">
@@ -35,14 +37,17 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="id_city">City</label>
-			{{ vol_form.city|add_class:"form-control"  }}
+		    <div class="form-group" style="display: inline-block;">
+                <label for="id_city">City</label>
+                {{ vol_form.city|add_class:"form-control"  }}
+		    </div>
+
+            <div class="form-group" style="display: inline-block;">
+                <label for="id_state">State</label>
+                {{ vol_form.state|add_class:"form-control"  }}
+            </div>
 		</div>
 		
-		<div class="form-group">
-			<label for="id_state">State</label>
-			{{ vol_form.state|add_class:"form-control"  }}
-		</div>
 		
 		<div class="form-group">
         <label for="id_zipcode">Zip</label>
