@@ -29,7 +29,7 @@ $(document).ready(function() {
         }
     });
 
-    if($(table).length) {
+    //if($(table).length) {
         table.columns().eq( 0 ).each( function ( colIdx ) {
             $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
                 table
@@ -38,6 +38,6 @@ $(document).ready(function() {
                 .draw();
             } );
         } );
-    }
+    //}
 
 });
