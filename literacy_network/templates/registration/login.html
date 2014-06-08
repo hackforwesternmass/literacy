@@ -8,20 +8,22 @@
 {% endif %}
 
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}" role="form" class="col-md-4 col-md-offset-2">
-{% csrf_token %}
-<table>
-<tr>
-    <td>Email Address</td>
-    <td>{{ form.username|add_class:"form-control" }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password|add_class:"form-control" }}</td>
-</tr>
-</table>
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="id_first_name">Email Address</label>
+        {{ form.username|add_class:"form-control"|attr:"style:width:20em;" }}
+        {{ form.username.errors }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_username">Password</label>
+        {{ form.password|add_class:"form-control"|attr:"style:width:20em;" }}
+        {{ form.password.errors }}
+    </div>
 
     <button class="btn btn-primary" type="submit">Login</button>
-    <input type="hidden" name="next" value="{{ next }}" />
+    <input type="hidden" name="next" value="{{ next }}"/>
 </form>
 
 {% endblock %}
