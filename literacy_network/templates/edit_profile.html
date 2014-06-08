@@ -69,7 +69,7 @@
         {% endfor %}
 
         {{ site_formset.management_form }}
-        <input type="checkbox" data-bind="value: willvisit">Visit classes as a guest speaker</input>
+        <input type="checkbox" data-bind="checked: willvisit">Visit classes as a guest speaker</input>
         <br />
         <div style="margin: 10px" data-bind="visible: willvisit">
         Which sites could you visit?
@@ -80,11 +80,11 @@
             <li>{{ site_form.affirmative }} {{ site_form.instance.site.name }}</li>
         {% endfor %}
         <ul>
-        <div>
+        </div>
         <input type="submit"/>
     </div>
-
 </form>
+<div style="margin: 100px;"></div>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -101,6 +101,11 @@
         var viewModel = {
             willvisit: ko.observable(false) // Message initially visible
         };
+        viewModel.willvisit.subscribe(function(oldValue) {
+            if(!oldValue) {
+                window.scrollTo(0,document.body.scrollHeight);
+            }
+        }, null, "beforeChange");
         ko.applyBindings(viewModel);
     });
 </script>
