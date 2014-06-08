@@ -4,10 +4,19 @@
 {% load bool_yn from tag_extras %}
 {% include "topmatter.html" %}
 
-{{ volunteer.first_name }}
-{{ volunteer.last_name }}
-<br />
-
-
+{{ volunteer.first_name }} {{ volunteer.last_name }}<br>
+{{ volunteer.user.username }}<br>
+{{ volunteer.phone }}<br>
+{{ volunteer.address_line1 }}<br>
+{{ volunteer.address_line2 }}<br>
+{{ volunteer.city }}, {{ volunteer.state }} {{ volunteer.zipcode }}<br>
+{% for occ in volunteer.occupation_set.all %}
+	{{ occ.industry }}: {{ occ.job_title }}<br>
+{% endfor %}
+{{ volunteer.occupation_notes }}<br>
+{% for resp in volunteer.helptyperesponse_set.all %}
+	{{ resp.help_type.short_name }}: {{ resp.affirmative|bool_yn }}<br>
+{% endfor %}
+Visit: {{ volunteer.volunteersite_set.all|join:", " }}
 
 {% include "footer.html" %}
