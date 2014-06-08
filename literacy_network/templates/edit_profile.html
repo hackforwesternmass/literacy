@@ -34,16 +34,18 @@
                 <tr>
                     <th>Industry</th>
                     <th>Job Title</th>
-                    <th>Do you currently work here?</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
                 </tr>
             </thead>
             <tbody>
                 {% for occ_form in occ_formset|slice:"1:" %}
+                    {{ occ_form.id }}
                     <tr>
-                    <td>{{ occ_form.industry|add_class:"form-control"  }}</td>
-                    <td>{{ occ_form.job_title|add_class:"form-control"  }}</td>
-                    {{ occ_form.id|add_class:"form-control"  }}
-                    <td>{{ occ_form.current |add_class:"form-control" }}</td>
+                        <td>{{ occ_form.industry|add_class:"form-control"  }}</td>
+                        <td>{{ occ_form.job_title|add_class:"form-control"  }}</td>
+                        <td>{{ occ_form.start_date |add_class:"form-control" }}</td>
+                        <td>{{ occ_form.end_date |add_class:"form-control" }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
