@@ -11,10 +11,10 @@
         {% csrf_token %}
         {{ occ_formset.management_form }}
 
-        {% if not hide_contact_form %}
-        <h3>Contact Information</h3>
-        {% include "contact-form.html" %}
-        {% endif %}
+        <div style="display: {{hide_contact_form|yesno:'none, block'}}">
+            <h3>Contact Information</h3>
+            {% include "contact-form.html" %}
+        </div>
 
         <h3>Career Information</h3>
 
