@@ -28,17 +28,23 @@ $(document).ready(function() {
 
         $('#data-table #filters th').each( function (i) {
             var title = $('#data-table #titles th').eq( $(this).index() ).text();
-            $(this).html( '<input type="text" placeholder="Filter" />' );
-            table.columns().eq( 0 ).each( function ( colIdx ) {
-                $( '#filters input'/*, table.column( colIdx ).footer()*/ ).on( 'keyup change', function () {
+            $(this).html( '<input type="text" placeholder="Filter" />' )
+                .on( 'keyup change', function () {
+                    console.log($(this).index());
                     table
-                    .column( colIdx )
+                    .column( $(this).index() )
                     .search( this.value )
                     .draw();
                 } );
+
+
+            //table.columns().eq( 0 ).each( function ( colIdx ) {
+            //    $( '#filters input:nth-child('+colIdx+')'/*, table.column( colIdx ).footer()*/ ).on( 'keyup change', function () {
+            //        table
+            //        .column( colIdx )
+            //        .search( this.value )
+            //        .draw();
+            //    } );
             } );
-    } );
-
-}
-
+    }
 });
