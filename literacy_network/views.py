@@ -9,6 +9,25 @@ from literacy_network.models import *
 from literacy_network.forms import *
 import csv, sys, os
 
+def home_redirect(request):
+    """ Redirects the user to a registration form or volunteer list 
+        depending on their account role 
+    """
+    if request.user.is_authenticated() and request.user.is_staff:
+        return redirect("volunteers")
+    elif request.user.is_authenticated() and not request.user.is_superuser:
+        related_volunteer = get_object_or_404(Volunteer, user_id=request.user.pk)
+        return redirect("edit-volunteer-profile", volunteer_id=related_volunteer.pk)
+    else:
+        return redirect("new-volunteer")
+
+def logout(request):
+    """ Renders a page notifying the user that they have logged out
+        and points them back to the organization's main site
+    """
+    return render(requst, "logout.html")
+
+
 def edit_volunteer(request, volunteer_id=None):
     """ Presents a view used to edit a volunteer
 
@@ -18,7 +37,6 @@ def edit_volunteer(request, volunteer_id=None):
         Returns a view used to edit the volunteer on GET,
             or a redirection to the volunteer list on POST
     """
-    print("Volunteer with id {0} requested".format(volunteer_id))
     volunteer = None
     try:
         volunteer = Volunteer.objects.get(id=volunteer_id)
@@ -38,7 +56,11 @@ def edit_volunteer(request, volunteer_id=None):
             svol = vol_form.save()
             user = user_form.save()
 
-            return redirect("/volunteers/profile/" + str(svol.id)) # shameless hack
+            # associate the user with the volunteer
+            svol.user = user
+            svol.save()
+
+            return redirect("edit-volunteer-profile", volunteer_id=svol.id)
     elif volunteer_id:
         vol_form = VolunteerForm(instance=volunteer)
         if user:

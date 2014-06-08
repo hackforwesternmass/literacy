@@ -6,8 +6,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:    url(r'^$', 'literacy_network.views.edit_volunteer', name='home'),
-    url(r'^$', RedirectView.as_view(url='volunteers/new', permanent=False), name='home'),
+    # the home view will handle a redirection on the basis of user account type
+    url(r'^$', 'literacy_network.views.home_redirect', name='home'),
     url(r'^volunteers/$', 'literacy_network.views.volunteers', name='volunteers'),
     url(r'^volunteers/new$', 'literacy_network.views.edit_volunteer', name='new-volunteer'),
     url(r'^volunteers/edit/(?P<volunteer_id>\d{1,10})$', 'literacy_network.views.edit_volunteer', name='edit-volunteer'),
@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     # url(r'^literacy_network/', include('literacy_network.foo.urls')),
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', name="auth_login"),
-    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {"next_page" : "/"}, name="auth_logout"),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {"next_page" : "/logout"}, name="auth_logout"),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/volunteers/+$', 'literacy_network.views.volunteers', name='volunteers'),
