@@ -18,7 +18,8 @@ urlpatterns = patterns('',
     # url(r'^literacy_network/', include('literacy_network.foo.urls')),
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', name="auth_login"),
-    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {"next_page" : "/logout"}, name="auth_logout"),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {"next_page" : "/logged-out"}, name="auth_logout"),
+    url(r'^logged-out$', 'literacy_network.views.logged_out', name="logged_out"),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/volunteers/+$', 'literacy_network.views.volunteers', name='volunteers'),
