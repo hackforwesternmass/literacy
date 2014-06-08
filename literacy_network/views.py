@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_protect
 from datetime import datetime, timedelta
 from django.db import DatabaseError
 from django.utils import simplejson
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserEditForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from literacy_network.models import *
 from literacy_network.forms import *
@@ -50,8 +50,8 @@ def create_volunteer(request, volunteer_id=None):
         user_form = UserCreationForm()
 
     if request.method == "POST":
-        vol_form = VolunteerForm(request.POST, request.FILES, instance=volunteer)
-        user_form = UserCreationForm(request.POST, request.FILES, instance=user)
+        vol_form = VolunteerForm(request.POST, request.FILES)
+        user_form = UserCreationForm(request.POST, request.FILES)
 
         if vol_form.is_valid() and user_form.is_valid():
             svol = vol_form.save()
@@ -95,31 +95,47 @@ def edit_volunteer_profile(request, volunteer_id, hide_contact_form=False):
                             site=site, affirmative=False)
 
     if request.method == 'POST':
-        vol_form = VolunteerForm(request.POST, instance=volunteer)
-        occ_formset = OccupationFormset(request.POST, instance=volunteer)
-        help_formset = HelpResponseFormset(request.POST, instance=volunteer)
-        site_formset = SiteFormset(request.POST, instance=volunteer)
+        vol_form = VolunteerForm(request.POST)
+        user_form = UserEditForm(request.POST, instance=request.user)
+        occ_formset = OccupationFormset(request.POST, 
+            prefix="occ", instance=volunteer)
+        help_formset = HelpResponseFormset(request.POST, 
+            prefix="help", instance=volunteer)
+        site_formset = SiteFormset(request.POST, 
+            prefix="site", instance=volunteer)
 
         if occ_formset.is_valid() and help_formset.is_valid() \
-                    and site_formset.is_valid() and vol_form.is_valid():
+            and site_formset.is_valid() and vol_form.is_valid() \
+            and user_form.is_valid():
             vol_form.save()
             occ_formset.save()
             help_formset.save()
             site_formset.save()
-        return render(request, 'thanks.html')
+            return render(request, 'thanks.html')
+        else:
+            print("Vol form errors")
+            print(vol_form.errors)
+            print("Occ form errors")
+            print(occ_formset.errors)
+            print("Help form errors")
+            print(help_formset.errors)
+            print("Site form errors")
+            print(site_formset.errors)
     else:
         vol_form = VolunteerForm(instance=volunteer)
-        occ_formset = OccupationFormset(instance=volunteer)
-        help_formset = HelpResponseFormset(instance=volunteer)
-        site_formset = SiteFormset(instance=volunteer)
+        edit_form = UserEditForm(instance=request.user)
+        occ_formset = OccupationFormset(instance=volunteer, prefix="occ")
+        help_formset = HelpResponseFormset(instance=volunteer, prefix="help")
+        site_formset = SiteFormset(instance=volunteer, prefix="site")
 
-        return render(request, 'edit_profile.html', {
-            "vol_form" : vol_form,
-            'occ_formset' : occ_formset,
-            'help_formset' : help_formset,
-            "site_formset" : site_formset,
-            "anchor" : None,
-            "hide_contact_form" : hide_contact_form
+    return render(request, 'edit_profile.html', {
+        "vol_form" : vol_form,
+        "user_form" : user_form,
+        'occ_formset' : occ_formset,
+        'help_formset' : help_formset,
+        "site_formset" : site_formset,
+        "anchor" : None,
+        "hide_contact_form" : hide_contact_form
     })
 
 def view_volunteer(request, volunteer_id):
