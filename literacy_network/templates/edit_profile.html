@@ -4,9 +4,8 @@
 {% include "topmatter.html" %}
 {% load widget_tweaks %}
 
-<form method="post" action="" role="form">
+<form method="post" action="" role="form" class="col-md-4 col-md-offset-2">
     {% csrf_token %}
-    <div class="right">
         {% if not hide_contact_form %}
             <h3>Contact Information</h3>
             <hr>
@@ -81,10 +80,7 @@
         {% endfor %}
         <ul>
         </div>
-		<button type="button" class="btn btn-default">
-			<input type="submit"/>
-		</button>
-    </div>
+		<button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <div style="margin: 100px;"></div>
 
