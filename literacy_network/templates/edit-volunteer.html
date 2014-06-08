@@ -21,6 +21,17 @@
         {{ vol_form.phone.errors }}
         {{ vol_form.phone }}
 
+        <label for="id_address_line1">Address</label>
+        {{ vol_form.address_line1 }}
+        {{ vol_form.address_line2 }}
+
+        <label for="id_city">City</label>
+        {{ vol_form.city }}
+        <label for="id_state">State</label>
+        {{ vol_form.state }}
+        <label for="id_zip">Zip</label>
+        {{ vol_form.zipcode }}
+
         {{ user_form.non_field_errors }}
 
         {{ user_form.username.errors }}
@@ -35,6 +46,7 @@
         {{ user_form.password2.errors }}
         <label for="id_username">Confirm Password</label>
         {{ user_form.password2 }}
+
 
         <input type="submit" value="Next" />
     </div>
