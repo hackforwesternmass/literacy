@@ -12,10 +12,9 @@ urlpatterns = patterns('',
     url(r'^volunteers/new$', 'literacy_network.views.edit_volunteer', name='new-volunteer'),
     url(r'^volunteers/edit/(?P<volunteer_id>\d{1,10})$', 'literacy_network.views.edit_volunteer', name='edit-volunteer'),
     url(r'^volunteers/view/(?P<volunteer_id>\d{1,10})$', 'literacy_network.views.view_volunteer', name='view-volunteer'),
-    url(r'^volunteers/profile/(?P<volunteer_id>\d{1,10})$', 'literacy_network.views.edit_volunteer_profile', name='edit-volunteer-profile'),
+    url(r'^volunteers/profile/(?P<volunteer_id>\d{1,10})/(?P<hide_contact_form>True|False)?$', 
+        'literacy_network.views.edit_volunteer_profile', name='edit-volunteer-profile'),
     url(r'^upload-industries$', 'literacy_network.views.upload_industries', name='industries'),
-
-    # url(r'^literacy_network/', include('literacy_network.foo.urls')),
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', name="auth_login"),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {"next_page" : "/logged-out"}, name="auth_logout"),

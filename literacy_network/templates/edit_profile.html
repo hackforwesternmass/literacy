@@ -6,13 +6,15 @@
 <form method="post" action="">
     {% csrf_token %}
     <div class="right">
-        <h3>Contact Information</h3>
-        <a id="contact"></a>
-        {{ vol_form.non_field_errors }}
-        <label for="id_first_name">First Name</label>
-        {{ vol_form.first_name }}
-        <label for="id_last_name">Last Name</label>
-        {{ vol_form.last_name }}
+        {% if not hide_contact_form %}
+            <h3>Contact Information</h3>
+            <a id="contact"></a>
+            {{ vol_form.non_field_errors }}
+            <label for="id_first_name">First Name</label>
+            {{ vol_form.first_name }}
+            <label for="id_last_name">Last Name</label>
+            {{ vol_form.last_name }}
+        {% endif %}
 
 
         <h3 style="margin-top: 50px;">Career Information</h3>

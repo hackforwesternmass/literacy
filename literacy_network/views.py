@@ -59,7 +59,8 @@ def edit_volunteer(request, volunteer_id=None):
             svol.user = user
             svol.save()
 
-            return redirect("edit-volunteer-profile", volunteer_id=svol.id)
+            return redirect("edit-volunteer-profile", 
+                volunteer_id=svol.id, hide_contact_form=True)
     elif volunteer_id:
         vol_form = VolunteerForm(instance=volunteer)
         if user:
@@ -67,8 +68,8 @@ def edit_volunteer(request, volunteer_id=None):
 
     return render(request, 'edit-volunteer.html', 
         {"vol_form" : vol_form, "user_form" : user_form })
-
-def edit_volunteer_profile(request, volunteer_id):
+         
+def edit_volunteer_profile(request, volunteer_id, hide_contact_form=False):
     volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
     data = {}
 
@@ -110,7 +111,8 @@ def edit_volunteer_profile(request, volunteer_id):
         'occ_formset' : occ_formset,
         'help_formset' : help_formset,
         "site_formset" : site_formset,
-        "anchor" : None
+        "anchor" : None,
+        "hide_contact_form" : hide_contact_form
     })
 
 def view_volunteer(request, volunteer_id):
