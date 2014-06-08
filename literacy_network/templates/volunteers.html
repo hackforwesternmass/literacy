@@ -13,7 +13,6 @@
                 <th>Contact</th>
                 <th>Industry</th>
                 <th>Job Title</th>
-                <th>Details</th>
                 <th>Phone?</th>
                 <th>Visit?</th>
                 <th>Host?</th>
@@ -26,7 +25,6 @@
                 <th>Contact</th>
                 <th>Industry</th>
                 <th>Job Title</th>
-                <th>Details</th>
                 <th>Phone?</th>
                 <th>Visit?</th>
                 <th>Host?</th>
@@ -37,6 +35,14 @@
                 <tr>
                     <td>{{ volunteer.first_name }}</td>
                     <td>{{ volunteer.last_name }}</td>
+                    <td>
+                        {{ volunteer.email }}<br>
+                        {{ volunteer.phone }}<br>
+                        {{ volunteer.address_line1 }}<br>
+                        {{ volunteer.address_line2 }}<br>
+                        {{ volunteer.city }}, {{ volunteer.state }} {{ volunteer.zipcode }}<br>
+                        {{ volunteer.helptyperesponse_set.all }}
+                    </td>
                     <td>{{ volunteer.phone }}</td>
                     <td>{{ volunteer.email }}</td>
                     <td><a href="{% url 'view-volunteer' volunteer.pk %}">[View]</a></td>
