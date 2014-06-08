@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from literacy_network.models import *
 from literacy_network.forms import *
+from django.core.exceptions import PermissionDenied
 import csv, sys, os
 
 def home_redirect(request):
@@ -27,7 +28,7 @@ def logged_out(request):
     """
     return render(request, "logged-out.html")
 
-def edit_volunteer(request, volunteer_id=None):
+def create_volunteer(request, volunteer_id=None):
     """ Presents a view used to edit a volunteer
 
         Keyword arguments:
@@ -69,9 +70,11 @@ def edit_volunteer(request, volunteer_id=None):
     return render(request, 'edit-volunteer.html', 
         {"vol_form" : vol_form, "user_form" : user_form })
          
+@login_required
 def edit_volunteer_profile(request, volunteer_id, hide_contact_form=False):
     volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
-    data = {}
+    if request.user.pk != volunteer.user.pk and not request.user.is_superuser:
+        raise PermissionDenied()
 
     # make sure there is a record for each volunteer help type
     new_helps = [q for q in HelpType.objects.all()
@@ -101,7 +104,7 @@ def edit_volunteer_profile(request, volunteer_id, hide_contact_form=False):
             help_formset.save()
             site_formset.save()
     else:
-        vol_form = VolunteerForm(request.POST, instance=volunteer)
+        vol_form = VolunteerForm(instance=volunteer)
         occ_formset = OccupationFormset(instance=volunteer)
         help_formset = HelpResponseFormset(instance=volunteer)
         site_formset = SiteFormset(instance=volunteer)
@@ -121,6 +124,8 @@ def view_volunteer(request, volunteer_id):
     """
     # TODO: check if volunteer is public. if not, and user is not staff, deny request
     volunteer = get_object_or_404(Volunteer, pk=volunteer_id)
+    if not volunteer.is_public:
+        raise PermissionDenied()
     return render(request, "view-volunteer.html", {"volunteer" : volunteer})
     
 @user_passes_test(lambda u: u.is_staff)
