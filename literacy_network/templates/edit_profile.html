@@ -3,7 +3,7 @@
 {% load bool_yn from tag_extras %}
 {% include "topmatter.html" %}
 
-<form method="post" action="">
+<form method="post" action="" role="form">
     {{ vol_form.non_field_errors }}
     {% csrf_token %}
     <div class="right">
