@@ -18,37 +18,48 @@
 
         <h3>Career Information</h3>
 
-        <p>What field do you work in?</p>
-        {{ occ_formset.forms.0.industry |add_class:"form-control" }}<br/>
-        Job Title
-        {{ occ_formset.forms.0.job_title |add_class:"form-control" }}<br/>
-        {{ occ_formset.forms.0.id |add_class:"form-control" }}
-        <a id="add-more-occ-link">Add more occupations</a>
-
-        <table id="more-occ-div" style="display: none">
+        <table class="table">
             <thead>
             <tr>
-                <th>Industry</th>
+                <th>What fields did or do you work in?</th>
                 <th>Job Title</th>
-                <!--<th>Start Date</th>
-                <th>End Date</th>-->
             </tr>
             </thead>
             <tbody>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        {{ occ_formset.forms.0.industry |add_class:"form-control" }}
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        {{ occ_formset.forms.0.job_title |add_class:"form-control" }}
+                        {{ occ_formset.forms.0.id |add_class:"form-control" }}
+                    </div>
+                </td>
+            </tr>
             {% for occ_form in occ_formset|slice:"1:" %}
             {{ occ_form.id }}
-            <tr>
-                <td>{{ occ_form.industry|add_class:"form-control" }}</td>
-                <td>{{ occ_form.job_title|add_class:"form-control" }}</td>
-                <!--<td>{{ occ_form.start_date |add_class:"form-control" }}</td>
-                <td>{{ occ_form.end_date |add_class:"form-control" }}</td> -->
+            <tr class="more-occ" style="display: none">
+                <td>
+                    <div class="form-group">
+                        {{ occ_form.industry|add_class:"form-control" }}
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        {{ occ_form.job_title|add_class:"form-control" }}
+                    </div>
+                </td>
             </tr>
             {% endfor %}
             </tbody>
         </table>
 
+        <a id="add-more-occ-link">Add more occupations</a>
 
-        <h3 style="margin-top: 50px;">Volunteer Information</h3>
+        <h3>Volunteer Information</h3>
 
         <p>How would you like to volunteer?</p>
 
@@ -89,7 +100,7 @@
         
         $("#add-more-occ-link").click(function(e) {
             e.preventDefault();
-            $("#more-occ-div").show();
+            $(".more-occ").show();
             $("#add-more-occ-link").hide();
         });
 
@@ -103,6 +114,10 @@
         }, null, "beforeChange");
         ko.applyBindings(viewModel);
     });
+
+
+
+
 
 </script>
 
