@@ -140,7 +140,7 @@ a.round-button {
     height: 104px;
     font-family: "futura-pt-condensed";
 }
-#nav-bar{
+/*#nav-bar{
 		ul {
 			list-style-type: none;
 			margin: 0;
@@ -165,7 +165,7 @@ a.round-button {
 			background-color: #4B264E;
 		}
 }
-	
+*/
 .errorlist li {
     color: red;
     margin-left: 20px;
