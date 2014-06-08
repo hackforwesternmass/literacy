@@ -1,8 +1,9 @@
 {% load tabindex from tag_extras %}
 {% load currency from tag_extras %}
 {% load bool_yn from tag_extras %}
-{% include "topmatter.html" %}
 {% load widget_tweaks %}
+
+{% include "topmatter.html" %}
 
 <div id="row">
 
@@ -77,7 +78,8 @@
                 <ul>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    </form>
+</div>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -101,16 +103,6 @@
         }, null, "beforeChange");
         ko.applyBindings(viewModel);
     });
-
-
-
-
-
-
-
-
-
-
 
 </script>
 
