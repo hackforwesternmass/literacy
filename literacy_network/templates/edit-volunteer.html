@@ -70,7 +70,7 @@
 		
 		<div class="form-group">
 			<label for="id_username">Confirm Password</label>
-			{{ user_form.password2 }}
+			{{ user_form.password2 |add_class:"form-control"}}
 		</div>
 
         <input type="submit" value="Next" />
