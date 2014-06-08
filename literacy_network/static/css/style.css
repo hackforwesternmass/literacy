@@ -140,6 +140,31 @@ a.round-button {
     height: 104px;
     font-family: "futura-pt-condensed";
 }
+
+#nav-bar{
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		li {
+			float: right;
+		}
+
+		a:link, a:visited {
+			font-weight: bold;
+			color: #FFFFFF;
+			padding: 10px;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+
+		a:hover, a:active {
+			background-color: #4B264E;
+		}
+}
 	
 .errorlist li {
     color: red;
